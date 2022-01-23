@@ -1,0 +1,1168 @@
+<html>
+
+<head>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <title>Kinoverse</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <link rel="icon" href="assets/images/favicon.png">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <script src="https://kit.fontawesome.com/672dd91e53.js" crossorigin="anonymous"></script>
+    <style>
+        *,
+        :after,
+        :before {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        ol,
+        ul {
+            margin-top: 0;
+            margin-bottom: 11px;
+        }
+
+        .padding-left-x0 {
+            padding-left: 0 !important;
+        }
+
+        li {
+            display: list-item;
+            text-align: -webkit-match-parent;
+        }
+
+        .padding-right-x0 {
+            padding-right: 0 !important;
+        }
+
+        .hidden,
+        .mobile-embedded .hidden-mobile-embedded {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        .text-tertiary {
+            color: #bb4f12;
+        }
+
+        form {
+            display: block;
+            margin-top: 0em;
+        }
+
+        .shared-gallery-modal .modal-title,
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        .sr-only,
+        .switcher-checkbox {
+            position: absolute;
+            width: 1px px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        form label {
+            font-weight: 700;
+        }
+
+        .form-control,
+        output {
+            display: block;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1b1f23;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 40px;
+            padding: 8px 15px;
+            background-color: #fff;
+            background-image: none;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+            box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+            -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            -webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+        }
+
+        .form-control,
+        output {
+            display: block;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #1b1f23;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 40px;
+            padding: 8px 15px;
+            background-color: #fff;
+            background-image: none;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+            box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%);
+            -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            -webkit-transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out, -webkit-box-shadow .15s ease-in-out;
+        }
+
+        .form-control {
+            padding: 8px;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border: 2px solid #cfd7de;
+        }
+
+        label {
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        label {
+            cursor: default;
+        }
+
+        .footer .marketing-footer .marketing-email-capture .js-email-capture-form .footer-email-input {
+            display: inline-block;
+            vertical-align: middle;
+            width: 225px;
+        }
+
+        .footer,
+        footer {
+            background-color: #303036;
+            color: #1f2124;
+            font-family: Averta, Avenir, Helvetica Neue, Calibri, Helvetica, Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        footer {
+            display: block;
+        }
+
+        .footer,
+        footer {
+            font-family: Averta, Avenir, Helvetica Neue, Calibri, Helvetica, Roboto, sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            line-height: normal;
+            padding: 20px 0 0;
+        }
+
+        .footer .footer-links-wrapper {
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            width: 100%;
+        }
+
+        .footer .footer-links-wrapper .learn-more-links {
+            flex: 27%;
+            margin-bottom: 8px;
+        }
+
+        .footer .footer-section-title {
+            display: block;
+            margin: 11px 0;
+            color: #fff;
+            font-family: Averta, Avenir, Helvetica Neue, Calibri, Helvetica, Roboto, sans-serif;
+            font-size: 20px;
+            font-weight: 700 !important;
+        }
+
+        .footer .footer-links-wrapper .about-rover-links .footer-list,
+        .footer .footer-links-wrapper .help-links .footer-list,
+        .footer .footer-links-wrapper .learn-more-links .footer-list {
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            width: 100%;
+        }
+
+        .footer .footer-links-wrapper .footer-list {
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .footer .footer-links-wrapper .footer-list a {
+            /* color: #62686e;*/
+            text-decoration: none;
+        }
+
+        .footer .footer-links-wrapper .about-rover-links {
+            -webkit-box-flex: 40%;
+            -ms-flex: 40%;
+            flex: 40%;
+            margin-bottom: 4px;
+        }
+
+        .footer .marketing-footer-email {
+            min-width: 350px;
+        }
+
+        .footer .marketing-footer {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .footer .marketing-footer .marketing-email-capture {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 350px;
+            margin-top: 0;
+            padding-left: 0;
+            color: #fff;
+        }
+
+        .footer .marketing-footer .marketing-email-capture .privacy-policy {
+            padding-left: 5px;
+        }
+
+        footer .marketing-email-capture .help-text {
+            height: auto;
+        }
+
+        .small-text,
+        small {
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .padding-right-x1 {
+            padding-right: 5px !important;
+        }
+
+        .margin-top-x3 {
+            margin-top: 15px !important;
+        }
+
+        .help-text {
+            display: inline-block;
+            height: 26px;
+            position: relative;
+            left: -5px;
+            top: 1px;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        p {
+            margin: 0 0 11px;
+        }
+
+        .text-nowrap {
+            white-space: nowrap;
+        }
+
+        .footer .marketing-footer .marketing-email-capture .help-text a {
+            text-decoration: underline;
+        }
+
+        .footer .marketing-footer .marketing-email-capture a:link,
+        .footer .marketing-footer .marketing-email-capture a:visited {
+            color: #62686e;
+        }
+
+        .rover-icon.rover-icon-lg {
+            font-size: 1.23077em;
+            line-height: 1em;
+            vertical-align: middle;
+        }
+
+        .footer .marketing-footer-social {
+            min-width: 350px;
+        }
+
+        .footer .marketing-footer .marketing-social {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-top: 16px;
+            width: 100%;
+        }
+
+        .footer .marketing-footer .marketing-social .social-footer-links a {
+            display: block;
+            height: 33px;
+        }
+
+        .footer .marketing-footer .marketing-social .social-footer-links a i.rover-icon-facebook-footer {
+            color: #3b5998;
+        }
+
+        .footer .marketing-footer .marketing-social .social-footer-links a i {
+            font-size: 30px;
+            margin-right: 15px;
+        }
+
+        .footer .footer-copyright-and-address {
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            /* background-color: #f4f5f6; */
+            color: #62686e;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            font-size: 12px;
+            height: 48px;
+            -webkit-box-pack: left;
+            -ms-flex-pack: left;
+            justify-content: left;
+            margin-top: 16px;
+            margin-left: 0;
+            padding-left: 0;
+            padding-top: 16px;
+            width: 100%;
+        }
+
+        .fr-stack,
+        [class*=" rover-icon-"],
+        [class^=rover-icon-] {
+            display: inline-block;
+        }
+
+        [class*=" rover-icon-"],
+        [class^=rover-icon-] {
+            font-family: rover-icons !important;
+
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .rover-icon-facebook-footer:before {
+            content: "\E907";
+        }
+
+        .footer .marketing-footer .marketing-social .social-footer-links {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .container:after {
+            clear: both;
+        }
+
+        .container {
+            margin-right: auto;
+            margin-left: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .container:after,
+        .container:before {
+            content: " ";
+            display: table;
+        }
+
+        .row:after {
+            clear: both;
+        }
+
+        .row {
+            margin-left: -15px;
+            margin-right: -15px;
+        }
+
+        .row:after,
+        .row:before {
+            content: " ";
+            display: table;
+        }
+
+        .col-xs-12 {
+            width: 100%;
+        }
+
+        .col-xs-6 {
+            width: 50%;
+        }
+
+        .col-lg-1,
+        .col-lg-2,
+        .col-lg-3,
+        .col-lg-4,
+        .col-lg-5,
+        .col-lg-6,
+        .col-lg-7,
+        .col-lg-8,
+        .col-lg-9,
+        .col-lg-10,
+        .col-lg-11,
+        .col-lg-12,
+        .col-md-1,
+        .col-md-2,
+        .col-md-3,
+        .col-md-4,
+        .col-md-5,
+        .col-md-6,
+        .col-md-7,
+        .col-md-8,
+        .col-md-9,
+        .col-md-10,
+        .col-md-11,
+        .col-md-12,
+        .col-sm-1,
+        .col-sm-2,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-6,
+        .col-sm-7,
+        .col-sm-8,
+        .col-sm-9,
+        .col-sm-10,
+        .col-sm-11,
+        .col-sm-12,
+        .col-xs-1,
+        .col-xs-2,
+        .col-xs-3,
+        .col-xs-4,
+        .col-xs-5,
+        .col-xs-6,
+        .col-xs-7,
+        .col-xs-8,
+        .col-xs-9,
+        .col-xs-10,
+        .col-xs-11,
+        .col-xs-12 {
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+
+
+        @media (min-width: 768px) {
+            .container {
+                width: 750px;
+            }
+
+            .footer .footer-copyright-and-address .copyright {
+                margin-right: 5px;
+            }
+
+            .form-inline .form-control,
+            .navbar-form .form-control {
+                display: inline-block;
+                width: auto;
+                vertical-align: middle;
+            }
+
+            .col-sm-5 {
+                width: 41.66667%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer .marketing-footer .marketing-social {
+                -webkit-box-align: start;
+                -ms-flex-align: start;
+                align-items: flex-start;
+            }
+
+            .container {
+                width: 970px;
+            }
+
+            .col-md-1,
+            .col-md-2,
+            .col-md-3,
+            .col-md-4,
+            .col-md-5,
+            .col-md-6,
+            .col-md-7,
+            .col-md-8,
+            .col-md-9,
+            .col-md-10,
+            .col-md-11,
+            .col-md-12 {
+                float: left;
+            }
+
+            .col-md-8 {
+                width: 66.66667%;
+            }
+
+            .col-md-4 {
+                width: 33.33333%;
+            }
+        }
+    </style>
+</head>
+
+<body class="" data-new-gr-c-s-check-loaded="14.1005.0" data-gr-ext-installed="">
+    <header id="header" class="alt">
+        <a class="logo child-center" href="/">
+            <img src="assets/images/logo.png">
+        </a>
+        <!-- <nav id="nav">
+            <ul>
+                <li style="white-space: nowrap;">
+                    <a href="/">Home</a>
+                </li>
+                <li style="white-space: nowrap;">
+                    <a href="/careers.html" class="scrolly">Careers</a>
+                </li>
+                <li class="current" style="white-space: nowrap;">
+                    <a href="/about-us.html" class="scrolly">About Us</a>
+                </li>
+            </ul>
+        </nav> -->
+    </header>
+    <div id="banner" class="wrapper">
+        <div class="inner">
+            <div class="content">
+                <h1>About us</h1>
+                <!-- <p>Signing up pre-launch will give you a $10 credit applied of service fee's *promo code will be
+                    emailed*</p> -->
+                <!-- <ul class="actions">
+                    <li><a href="#about_us" class="button large primary scrolly">Learn More</a></li>
+                </ul> -->
+            </div>
+            <div class="image-wrapper">
+                <section class="contact-form">
+                    <!-- <form method="post" action="#">
+                        <div class="fields">
+                            <div class="field half"><input name="name" id="name" placeholder="Name" type="text"></div>
+                            <div class="field half"><input name="email" id="email" placeholder="Email" type="email">
+                            </div>
+                            <div class="field"><textarea name="message" id="message" rows="6"
+                                    placeholder="Message"></textarea></div>
+                            <div class="field">
+                                <ul class="actions special">
+                                    <li><button type="submit" class="button primary">Notify Me</button></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form> -->
+                </section>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <section id="about_us" class="wrapper style1">
+            <div class="inner">
+                <div class="spotlights">
+                    <div class="spotlight">
+                        <div class="image fit"><img src="assets/images/pic02.jpg" alt=""></div>
+                        <div class="content">
+                            <h2>Digitalizing the filmmaking industry</h2>
+                            <p>Kinoverse is Digitalizing the filmmaking industry by allowing anyone with the skills to
+                                work and operate as a filmmaker or content creator company. Our software is specially
+                                made to make every process of filmmaking and content creation easier from hiring, to
+                                project management and more.</p>
+                            <!-- <ul class="actions">
+                                <li><a class="button primary" style="cursor: pointer;">Learn More</a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="spotlight">
+                        <div class="image fit alt"><img src="assets/images/pic03.jpg" alt=""></div>
+                        <div class="content">
+                            <h2>Kinoverse App</h2>
+                            <p>Filmmaker and content creator marketplace. Work, hire, and process payments all in one
+                                app.<br>Showcase your skills and get paid with a Filmmaker account, or hire your next
+                                freelancer with a client account. Or both. </p>
+                            <!-- <ul class="actions">
+                                <li><a class="button primary" style="cursor: pointer;">Learn More</a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="spotlight">
+                        <div class="image fit"><img src="assets/images/pic04.jpg" alt=""></div>
+                        <div class="content">
+                            <h2>KV Flow</h2>
+                            <p>Simplify the filmmaking process all on one platform and manage your jobs. With KV flow’s
+                                array of tools, you can manage your jobs, employees, and your projects. </p>
+                            <!-- <ul class="actions">
+                                <li><a class="button primary" style="cursor: pointer;">Learn More</a></li>
+                            </ul> -->
+                        </div>
+                    </div>
+                    <div class="spotlight">
+                        <div class="image fit alt"><img src="assets/images/pic03.jpg" alt=""></div>
+                        <div class="content">
+                            <h2>Clapperboard</h2>
+                            <p>Share your resume and get the exposure you deserve as an industry professional through
+                                our partner site. Clapperboard will help you find your next permanent employee or your
+                                next permanent job in the industry. Tailored to physical work in the film industry such
+                                as stuntmen, makeup artists, and extras.</p>
+                            <ul class="actions">
+                                <li><a class="button primary" style="cursor: pointer;">Learn More</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section id="two" class="wrapper style1">
+            <div class="inner">
+                <div class="features">
+                    <div class="feature"><span class="icon solid alt major fa-laptop"></span>
+                        <h2>For Clients</h2>
+                        <p>Hire a professional filmmaker and video creator of any kind for your business, or film
+                            projects with ease. pay hourly or by the project upon completion or by milestone. post your
+                            job and sort through lists of qualified candidates to find the right filmmaker.</p>
+                    </div>
+                    <div class="feature"><span class="icon solid alt major fa-camera-retro"></span>
+                        <h2>For Filmmakers</h2>
+                        <p>Work on your schedule and post your talents for the world to see. Create your profile and get
+                            hired doing what you love to do. Apply to new jobs posted or wait to get invited to apply.
+                        </p>
+                    </div>
+                    <div class="feature"><span class="icon solid alt major fa-paper-plane"></span>
+                        <h2>For Business</h2>
+                        <p>Are you a business looking to hire for a permanent position? We have you covered as well.
+                            Post a job to our form to hire the right candidate for specific roles within your company.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+        <!-- <section id="three" class="wrapper style1">
+            <div class="inner">
+                <div class="box cta">
+                    <div class="content">
+                        <h2>Find a professional for your movie making needs</h2>
+                        <p>Signing up pre-launch will give you a $10 credit applied of service fee's *promo code will be
+                            emailed*</p>
+                    </div>
+                    <ul class="actions stacked">
+                        <li><a href="/" class="button primary large fit" style="cursor: pointer;">Get Started</a></li>
+                        <li><a href="/" class="button large fit" style="cursor: pointer;">Learn More</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section> -->
+    </div>
+    <!-- <div id="footer" class="wrapper">
+        <div class="inner">
+            <section class="contact-info">
+                <div class="item">
+                    <span class="icon solid alt fa-envelope"></span>
+                    <a href="mailto:info@kinoverse.net">info@kinoverse.net</a>
+                </div>
+                <div class="item">
+                    <span class="icon brands alt fa-twitter"></span>
+                    <a href="https://twitter.com/kinoverseteam" style="cursor: pointer;">twitter.com/kinoverseteam</a>
+                </div>
+                <div class="item">
+                    <span class="icon brands alt fa-facebook-f"></span>
+                    <a href="https://www.facebook.com/kinoverseteam"
+                        style="cursor: pointer;">facebook.com/kinoverseteam</a>
+                </div>
+                <div class="item">
+                    <span class="icon brands alt fa-linkedin-in"></span>
+                    <a href="https://www.linkedin.com/company/kinoverse"
+                        style="cursor: pointer;">linkedin.com/kinoverse</a>
+                </div>
+            </section>
+            <p class="copyright"> © Kinoverse Corp. All rights reserved. 2021-2022. </p>
+        </div>
+    </div> -->
+    <footer class="new-design js-new-design footer-container" role="contentinfo">
+        <div class="footer">
+            <div class="container">
+
+
+                <div class="container col-md-8 padding-left-x0">
+
+                    <div class="footer-links-wrapper">
+
+                        <!-- <div class="learn-more-links">
+                            <span class="footer-section-title">Learn More</span>
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <ul class="footer-list">
+
+
+                                        <li>
+                                            <a href="https://www.rover.com/blog/">Read Our Blog</a>
+                                        </li>
+
+
+
+                                        <li class="small-column">
+                                            <a href="/community/questions/">Rover Q&amp;A Community</a>
+                                        </li>
+
+
+
+                                        <li>
+                                            <a href="https://store.rover.com">Rover Store</a>
+                                        </li>
+
+
+
+
+
+
+                                    </ul>
+                                    <ul class="footer-list">
+
+
+
+
+
+
+
+
+                                        <li>
+                                            <a href="/rover-guarantee/">Rover Guarantee</a>
+                                        </li>
+
+
+
+                                        <li>
+                                            <a href="https://www.rover.com/blog/safety/">Safety</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> -->
+
+
+
+                        <div class="about-rover-links">
+                            <span class="footer-section-title">About Kinoverse</span>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-5">
+                                    <ul class="footer-list">
+
+
+                                        <li>
+                                            <a href="/static/about-us.html">About Us</a>
+                                        </li>
+
+
+
+                                        <!-- <li>
+                                            <a href="/contact-us.html">Contact Us</a>
+                                        </li> -->
+
+
+
+                                        <!-- <li>
+                                            <a href="/accessibility-statement/">Accessibility</a>
+                                        </li> -->
+
+
+
+                                        <!-- <li>
+                                            <a href="/app/">Get the App</a>
+                                        </li> -->
+
+
+
+                                        <!-- <li>
+                                            <a href="https://www.rover.com/blog/press">Press</a>
+                                        </li> -->
+
+
+
+                                        <li>
+                                            <a class="js-careers-link-click-listener"
+                                                href="/static/careers.html">Careers</a>
+                                        </li>
+
+
+
+                                        <!-- <li>
+                                            <a href="https://investors.rover.com/">Investor Relations</a>
+                                        </li> -->
+
+
+
+
+
+
+
+
+
+
+                                    </ul>
+                                </div>
+                                <!-- <div class="col-xs-6 col-sm-5">
+                                    <ul class="footer-list">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        <li>
+                                            <a href="/terms/privacy/">Privacy Statement</a>
+                                        </li>
+
+
+
+                                        <li>
+                                            <a href="/terms/cookies/">Cookie Policy</a>
+                                        </li>
+
+
+
+                                        <li>
+                                            <a href="/terms/cookies/#ccpa">CA - Do Not Sell My Info</a>
+                                        </li>
+
+
+
+                                        <li>
+                                            <a href="/terms/tos/">Terms of Service</a>
+                                        </li>
+
+
+                                    </ul>
+                                </div> -->
+                            </div>
+                        </div>
+
+
+                        <!-- 
+                        <div class="help-links hidden-xs">
+                            <span class="footer-section-title">Need Help?</span>
+                            <ul class="footer-list">
+
+                                <li>
+                                    <a href="https://support.rover.com/hc/en-us/">Help Center</a>
+                                </li>
+
+                            </ul>
+                        </div> -->
+
+                    </div>
+
+                </div>
+                <div class="col-md-4 padding-left-x0 padding-right-x0">
+
+
+
+                    <div class="marketing-footer marketing-footer-email">
+                        <div class="marketing-email-capture">
+                            <span class="footer-section-title">Ready to signup?</span>
+                            <div class="js-email-capture-footer-form-failure hidden">
+                                <p class="text-tertiary">
+                                    Please enter a valid email address.
+                                </p>
+                            </div>
+                            <!-- <div class="js-email-capture-footer-form-initial">
+                                <form class="js-email-capture-form form-inline" action="/newsletter-signup/"
+                                    method="POST">
+                                    <label for="footer-email-capture-input" class="sr-only">Email: </label>
+                                    <input class="form-control footer-email-input" type="email" name="email"
+                                        id="footer-email-capture-input" aria-label="Email Address"
+                                        placeholder="Email Address" data-track-event="" data-event-type="click"
+                                        data-event="newsletter-submit" required="">
+                                    <button
+                                        class="kibble-btn kibble-btn-default-contrast kibble-btn-small kibble-btn-block-small margin-left-x2 float-right"
+                                        type="submit">Submit</button>
+                                </form>
+
+                            </div> -->
+                            <div class="js-email-capture-footer-form-thanks hidden" role="status">
+                                <p class="text-primary">
+                                    <i class="rover-icon rover-icon-checked rover-icon-lg"></i>
+                                    Success! Thanks for subscribing!
+                                </p>
+                            </div>
+
+                            <p class="privacy-policy help-text text-left small-text margin-top-x3 padding-right-x1">
+                                <span>You can use the signup form above to signup for the pre-launch.</span>
+                                Please provide a valid email address to receive a $10 credit coupon code for FREE.
+                                <!-- By providing my e-mail address, I consent to receive marketing communications from
+                                Rover.com and its affiliates.  -->
+                                <!-- <a href="/terms/privacy/" class="text-nowrap">Privacy
+                                    Policy</a> -->
+                            </p>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="marketing-footer marketing-footer-social">
+                        <div class="marketing-social">
+                            <div class="social-footer-links">
+                                <a target="_blank" href="mailto:info@kinoverse.net" rel="noopener noreferrer"
+                                    aria-label="Visit Rover on Instagram" data-track-event="" data-event-type="click"
+                                    data-event="social-outbound-click"
+                                    data-event-merge="{ &quot;socialNetwork&quot;: &quot;instagram&quot; }">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a target="_blank" href="https://www.facebook.com/kinoverseteam"
+                                    rel="noopener noreferrer" aria-label="Visit Rover on Facebook" data-track-event=""
+                                    data-event-type="click" data-event="social-outbound-click"
+                                    data-event-merge="{ &quot;socialNetwork&quot;: &quot;facebook&quot; }">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+
+
+
+                                <a target="_blank" href="https://twitter.com/kinoverseteam" rel="noopener noreferrer"
+                                    aria-label="Visit Rover on Twitter" data-track-event="" data-event-type="click"
+                                    data-event="social-outbound-click"
+                                    data-event-merge="{ &quot;socialNetwork&quot;: &quot;twitter&quot; }">
+                                    <i class="fab fa-twitter-square"></i>
+                                </a>
+
+                                <a target="_blank" href="https://www.linkedin.com/company/kinoverse"
+                                    rel="noopener noreferrer" aria-label="Visit Rover on Pinterest" data-track-event=""
+                                    data-event-type="click" data-event="social-outbound-click"
+                                    data-event-merge="{ &quot;socialNetwork&quot;: &quot;pinterest&quot; }">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="container footer-copyright-and-address">
+                    <span class="copyright">© 2021-2022 Kinoverse Corp. All rights reserved.</span>
+                    <!-- <span> 711 Capitol Way S., Suite 204, Olympia, WA 98501</span> -->
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <script>
+        (function ($) {
+            var $window = $(window),
+                $header = $('#header'),
+                $banner = $('#banner'),
+                $body = $('body');
+            breakpoints({
+                default: ['1681px', null],
+                xlarge: ['1281px', '1680px'],
+                large: ['981px', '1280px'],
+                medium: ['737px', '980px'],
+                small: ['481px', '736px'],
+                xsmall: ['361px', '480px'],
+                xxsmall: [null, '360px']
+            });
+            $window.on('load', function () {
+                window.setTimeout(function () {
+                    $body.removeClass('is-preload');
+                }, 100);
+            });
+            $('.scrolly').scrolly({
+                offset: function () {
+                    return $header.height() - 5;
+                }
+            });
+            if ($banner.length > 0 && $header.hasClass('alt')) {
+                $window.on('resize', function () {
+                    $window.trigger('scroll');
+                });
+                $banner.scrollex({
+                    bottom: $header.outerHeight() + 50,
+                    terminate: function () {
+                        $header.removeClass('alt');
+                    },
+                    enter: function () {
+                        $header.addClass('alt');
+                    },
+                    leave: function () {
+                        $header.removeClass('alt');
+                        $header.addClass('reveal');
+                    }
+                });
+            }
+            $('#nav > ul').dropotron({
+                alignment: 'right',
+                hideDelay: 350,
+                baseZIndex: 100000
+            });
+            $('<a href="#navPanel" class="navPanelToggle"><span>Menu</span></a>').appendTo($header);
+            $('<div id="navPanel">' + '<nav>' + $('#nav').navList() + '</nav>' +
+                '<a href="#navPanel" class="close"></a>' + '</div>').appendTo($body).panel({
+                    delay: 500,
+                    hideOnClick: true,
+                    hideOnSwipe: true,
+                    resetScroll: true,
+                    resetForms: true,
+                    target: $body,
+                    visibleClass: 'is-navPanel-visible',
+                    side: 'right'
+                });
+        })(jQuery);
+    </script>
+    <ul class="dropotron level-0" style="user-select: none; display: none; position: absolute; z-index: 100000;">
+        <li style="white-space: nowrap;"><a style="display: block; cursor: pointer;">Option One</a></li>
+        <li style="white-space: nowrap;"><a style="display: block; cursor: pointer;">Option Two</a></li>
+        <li style="white-space: nowrap;"><a style="display: block; cursor: pointer;">Option Three</a></li>
+        <li class="opener" style="user-select: none; cursor: pointer; white-space: nowrap;"><a
+                style="display: block; cursor: pointer;">Submenu</a>
+            <ul class="dropotron level-1"
+                style="user-select: none; display: none; position: absolute; z-index: 100001;">
+                <li style="white-space: nowrap;"><a style="display: block; cursor: pointer;">Option One</a></li>
+                <li style="white-space: nowrap;"><a style="display: block; cursor: pointer;">Option Two</a></li>
+                <li style="white-space: nowrap;"><a style="display: block; cursor: pointer;">Option Three</a></li>
+                <li style="white-space: nowrap;"><a style="display: block; cursor: pointer;">Option Four</a></li>
+            </ul>
+        </li>
+    </ul>
+    <div id="navPanel">
+        <nav>
+            <a class="link depth-0" href="/" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <span class="indent-0"></span>Home
+            </a>
+            <a class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer;">
+                <span class="indent-0"></span>Services
+            </a>
+            <a class="link depth-1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer;">
+                <span class="indent-1"></span>Film Makers
+            </a>
+            <a class="link depth-1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer;">
+                <span class="indent-1"></span>Actors
+            </a>
+            <a class="link depth-1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer;">
+                <span class="indent-1"></span>Script Writers
+            </a>
+            <a class="link depth-1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer;">
+                <span class="indent-1"></span>Customers
+            </a>
+            <a class="link depth-2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer;">
+                <span class="indent-2"></span>Buyer
+            </a>
+            <a class="link depth-2" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); cursor: pointer;">
+                <span class="indent-2"></span>Client
+            </a>
+            <a href="#about_us" class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <span class="indent-0"></span>About Us
+            </a>
+            <a href="#footer" class="link depth-0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <span class="indent-0"></span>Contact Us
+            </a>
+        </nav>
+        <a href="#navPanel" class="close" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></a>
+    </div>
+</body>
+
+<script src="assets/js/custom.js"></script>
+
+</html>
