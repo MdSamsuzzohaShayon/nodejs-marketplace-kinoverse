@@ -53,7 +53,7 @@ $(document).ready(function () {
         const inviteId = urlParams.get('id')
         $.ajax({
             method: "POST",
-            url: "http://localhost:1337/api/v2/subscribers/create",
+            url: `${BACKEND_URL}/v2/subscribers/create`,
             // url: "http://localhost:1337/api/v1/users/create-user",
             data: { name, email, inviteId }
         }).then(resp => {
