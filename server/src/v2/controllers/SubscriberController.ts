@@ -17,14 +17,14 @@ function rtGet(req: Request, res: Response, next: NextFunction) {
 const rtExport = async (req: Request, res: Response, next: NextFunction) => {
     Subscriber.findAll().then(users => {
         const jsonUsers = JSON.parse(JSON.stringify(users));
-        console.log({jsonUsers})
+        console.log({ jsonUsers })
 
         const csvFields = ['id', 'name', 'email'];
-        const csv =  json2csv.parse(jsonUsers,{csvFields} as unknown);
-        console.log({csv})
+        const csv = json2csv.parse(jsonUsers, { csvFields } as unknown);
+        console.log({ csv })
         res.setHeader("Content-Type", "text/csv");
         res.setHeader("Content-Disposition", "attachment; filename=users.csv");
- 
+
         res.status(200).end(csv);
     }).catch(error => {
         console.error(error);
@@ -34,17 +34,29 @@ const rtExport = async (req: Request, res: Response, next: NextFunction) => {
 function rtCreate(req: Request, res: Response, next: NextFunction) {
     req.body['createdAt'] = new Date()
     req.body['credit'] = CREDIT_AMOUNT;
+
+
+
+    // return Subscriber.create(req.body)
+    //     .then(result => {
+    //         res.send(buildSuccess({ user: result, new: true }));
+    //     })
+    //     .catch(err => {
+    //         console.log(err);
+    //     });
+
+
     Subscriber.findOne({
         where: { email: req.body['email'] }
     }).then(result => {
         if (result) { //Already registered
-            res.send(buildSuccess({user: result, new: false}));
+            res.send(buildSuccess({ user: result, new: false }));
         } else {
             //Find inviter
             Subscriber.findOne({
                 where: { id: req.body['inviteId'] }
             }).then(result => {
-                if (result) { 
+                if (result) {
                     return Subscriber.update({
                         credit: result.credit + CREDIT_AMOUNT,
                     }, {
@@ -60,7 +72,7 @@ function rtCreate(req: Request, res: Response, next: NextFunction) {
             })
             //Create new 
             return Subscriber.create(req.body).then(result => {
-                res.send(buildSuccess({user: result, new: true}));
+                res.send(buildSuccess({ user: result, new: true }));
             }).catch(error => {
                 res.send(buildError("GET", error));
                 console.error(error);
@@ -69,7 +81,7 @@ function rtCreate(req: Request, res: Response, next: NextFunction) {
     }).catch(error => {
         console.error(error);
         res.send(buildError("GET", error));
-    })
+    });
 }
 
 export default {

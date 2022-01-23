@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     //Sliding image
     var images = [], x = 0;
@@ -7,10 +7,10 @@ $(document).ready(function() {
     images[2] = "assets/images/pre-launch-site/Worker-Feed-Timeline.png";
     images[3] = "assets/images/pre-launch-site/Worker-Message.png";
     images[4] = "assets/images/pre-launch-site/Worker-Preview-Profile.png";
-    setInterval(function(){
+    setInterval(function () {
         x = (x === images.length - 1) ? 0 : x + 1;
         document.querySelector(".device-mockup").style.backgroundImage = `url('${images[x]}')`;
-    },4000);
+    }, 4000);
     //End Sliding image
 
     function initShare(userId) {
@@ -29,14 +29,14 @@ $(document).ready(function() {
     // modal start
     var closeButtons = $(".modal .close");
 
-    closeButtons.on('click', function() {
+    closeButtons.on('click', function () {
         this.closest('.modal').style.display = 'none';
     });
 
     // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         var modals = document.querySelectorAll('.modal');
-        modals.forEach(modal => {        
+        modals.forEach(modal => {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
@@ -45,7 +45,7 @@ $(document).ready(function() {
 
     function processForm(e) {
         if (e.preventDefault) e.preventDefault();
-    
+
         const name = document.querySelector('#subscribe_form #name').value;
         const email = document.querySelector('#subscribe_form #email').value;
         const queryString = window.location.search;
@@ -54,6 +54,7 @@ $(document).ready(function() {
         $.ajax({
             method: "POST",
             url: "http://localhost:1337/api/v2/subscribers/create",
+            // url: "http://localhost:1337/api/v1/users/create-user",
             data: { name, email, inviteId }
         }).then(resp => {
             if (resp.success) {
@@ -75,7 +76,7 @@ $(document).ready(function() {
         });
         return false;
     }
-    
+
     var form = document.querySelector('#subscribe_form');
     if (form.attachEvent) {
         form.attachEvent("submit", processForm);

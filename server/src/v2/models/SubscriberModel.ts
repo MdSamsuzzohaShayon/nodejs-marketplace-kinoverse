@@ -9,6 +9,13 @@ class Subscriber extends Model {
     public email!: string;
     public credit: number;
     public createdAt: string;
+
+    // static associate(models: any) {
+    //     // define association here
+    //     // MANY TO MANY RELATIONSHIP 
+    //     Subscriber.belongsTo(models.User);
+
+    // }
 }
 
 Subscriber.init({
@@ -31,7 +38,7 @@ Subscriber.init({
         allowNull: true
     },
     createdAt: {
-        type: DataTypes.DATE ,
+        type: DataTypes.DATE,
         allowNull: true
     },
 }, {
