@@ -57,6 +57,7 @@ $(document).ready(function () {
             // url: "http://localhost:1337/api/v1/users/create-user",
             data: { name, email, inviteId }
         }).then(resp => {
+            console.log("Response - ", resp);
             if (resp.success) {
                 const userId = resp.data.user.id;
                 const modal = document.querySelector('#myModal');
@@ -72,7 +73,7 @@ $(document).ready(function () {
                 initShare(userId)
             }
         }).catch(err => {
-            console.error(err)
+            console.log(err);
         });
         return false;
     }

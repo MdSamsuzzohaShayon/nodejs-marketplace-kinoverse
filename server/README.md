@@ -58,3 +58,5 @@ host* - This is the host of your database
 
 11)start server
 # pm2 start src/index.ts
+
+node --max_old_space_size=1024 -r ts-node/register ./src/index.ts

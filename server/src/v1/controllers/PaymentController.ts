@@ -2,20 +2,19 @@ import { Request, Response, NextFunction } from 'express';
 import { buildSuccess, buildError } from '../utils';
 import PaymentModel from '../models/PaymentModel';
 import ServicePayment from '../models/ServicePaymentModel';
-import StripeConfig from '../../config/stripe-config.json';
 import Movie from '../models/MovieModel';
 import ServiceOrder from '../models/ServiceOrderModel';
 const Payment = PaymentModel.Payment
 
 const Stripe = require('stripe');
-const stripe = Stripe(StripeConfig.key);
+const stripe = Stripe(process.env.KEY_PROD);
 
 function rtUpdatePaymentStatus(req: Request, res: Response, next: NextFunction) {
     Payment.findOne({
         where: {
             id: req.params.id
         }
-    }).then(async (result:any) => {
+    }).then(async (result: any) => {
         switch (result.status) {
             // case "start": {
             //     return Payment.update({
@@ -261,7 +260,7 @@ async function rtStripeCreateIntent(req: Request, res: Response) {
         res.send(buildSuccess(paymentIntent))
     } catch (err) {
         console.error(err);
-        res.send(buildError('POST', err ))
+        res.send(buildError('POST', err))
     }
 }
 

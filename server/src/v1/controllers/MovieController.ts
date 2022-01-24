@@ -3,14 +3,13 @@ import { buildSuccess, buildError } from '../utils';
 import Movie from '../models/MovieModel';
 import User from '../models/UserModel';
 import AWS from 'aws-sdk';
-import s3config from '../../s3Admin';
 interface MulterRequest extends Request {
     files: any;
 }
 
 function rtGet(req: Request, res: Response, next: NextFunction) {
     Movie.findAll({
-        include:  [User]
+        include: [User]
     }).then(result => {
         res.send(buildSuccess(result));
     }).catch(error => {
@@ -35,9 +34,9 @@ function rtGetByUserId(req: Request, res: Response, next: NextFunction) {
 function rtGetOne(req: Request, res: Response, next: NextFunction) {
     Movie.findOne({
         where: { id: req.params.id },
-        include:  [User]
+        include: [User]
     }).then(result => {
-       //console.log(result);
+        //console.log(result);
         res.send(buildSuccess(result));
     }).catch(error => {
         console.error(error);
@@ -50,7 +49,7 @@ function rtCreate(req: Request, res: Response, next: NextFunction) {
     Movie.create(req.body).then(result => {
 
         res.send(buildSuccess(result));
-       //console.log(result);
+        //console.log(result);
     }).catch(error => {
         res.send(buildError("GET", error));
         console.error(error);
@@ -58,21 +57,21 @@ function rtCreate(req: Request, res: Response, next: NextFunction) {
 }
 
 function rtUpdate(req: Request, res: Response, next: NextFunction) {
-    Movie.update(req.body,{ where: { id: req.params.id } }).then(result => {
+    Movie.update(req.body, { where: { id: req.params.id } }).then(result => {
         res.send(buildSuccess(result));
-       //console.log(result);
+        //console.log(result);
     }).catch(error => {
         res.send(buildError("GET", error));
         console.error(error);
-    })   
+    })
 }
 
 function rtDelete(req: Request, res: Response, next: NextFunction) {
     Movie.destroy({
-        where: { id: req.params.id } 
+        where: { id: req.params.id }
     }).then(result => {
         res.send(buildSuccess(result));
-       //console.log(result);
+        //console.log(result);
     }).catch(error => {
         res.send(buildError("GET", error));
         console.error(error);
@@ -80,13 +79,17 @@ function rtDelete(req: Request, res: Response, next: NextFunction) {
 }
 
 function rtFile(req: MulterRequest, res: Response, next: NextFunction) {
-    console.log("body ---------------------------", req.body )
-    console.log("files ---------------------------", req.files )
-    const s3 = new AWS.S3(s3config);
+    console.log("body ---------------------------", req.body)
+    console.log("files ---------------------------", req.files)
+    const s3 = new AWS.S3({
+        accessKeyId: process.env.ACCESS_KEY_ID,
+        secretAccessKey: process.env.SECRET_ACCESS_KEY
+    });
+
     s3.upload({
-        Bucket: "kinoverse-prod/"+req.body,
+        Bucket: "kinoverse-prod/" + req.body,
         Key: req.files.file.name,
-        Body: req.files.file.data ,
+        Body: req.files.file.data,
         ContentType: req.files.file.mimetype,
         ContentLength: req.files.file.size,
         ACL: 'public-read'
