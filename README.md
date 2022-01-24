@@ -6,6 +6,7 @@ https://www.youtube.com/watch?v=yFgrSJGNj0E
 
 `pm2 start ts-node -- --type-check -r tsconfig-paths/register src/server.ts`
 `pm2 start ts-node -- -P tsconfig.server.json ./server/index.ts`
+`pm2 start ts-node -- -P tsconfig.json ./src/index.ts`
 __https://github.com/Unitech/pm2/issues/3503__
 
 http://kinoverse.net/api/v2/subscribers
