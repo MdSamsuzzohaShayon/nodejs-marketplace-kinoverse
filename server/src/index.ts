@@ -65,7 +65,7 @@ app.use('/api/v2', v2);
 // });
 const port = process.env.PORT;
 app.listen(port, function () {
-  console.log('Example app listening on port 1337!');
+  console.log('Example app listening on port 4000!');
 });
 
 // app.listen(8080, function () {
