@@ -8,6 +8,9 @@ https://www.youtube.com/watch?v=yFgrSJGNj0E
 `pm2 start ts-node -- -P tsconfig.server.json ./server/index.ts`
 __https://github.com/Unitech/pm2/issues/3503__
 
+http://kinoverse.net/api/v2/subscribers
+http://kinoverse.net/api/v1/users/get-all-users
+
 
 
 https://github.com/TypeStrong/ts-node/issues/566

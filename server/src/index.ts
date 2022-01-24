@@ -53,14 +53,18 @@ app.use(express.json());
 app.use(express.text())
 //app.use(bodyParser.text());
 app.use(express.urlencoded({ extended: false }));
+
+app.get('/check', (req, res, next) => {
+  res.json({ msg: "Hello" });
+});
 app.use('/api/v1', v1);
 app.use('/api/v2', v2);
 
 // app.listen(443, function () {
 //   console.log('Example app listening on port 443!');
 // });
-
-app.listen(1337, function () {
+const port = process.env.PORT;
+app.listen(port, function () {
   console.log('Example app listening on port 1337!');
 });
 
