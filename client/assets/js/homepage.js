@@ -1,5 +1,6 @@
 $(document).ready(function () {
 
+    /*
     //Sliding image
     var images = [], x = 0;
     images[0] = "assets/images/pre-launch-site/Hire-Message.png";
@@ -25,7 +26,9 @@ $(document).ready(function () {
         document.querySelector('.share-twitter').setAttribute('href', twitterLink);
         document.querySelector('.share-linkedin').setAttribute('href', linkedinLink);
     }
+    */
 
+    /*
     // modal start
     var closeButtons = $(".modal .close");
 
@@ -42,7 +45,9 @@ $(document).ready(function () {
             }
         })
     }
+    */
 
+    /*
     function processForm(e) {
         if (e.preventDefault) e.preventDefault();
 
@@ -77,11 +82,130 @@ $(document).ready(function () {
         });
         return false;
     }
-
+    
     var form = document.querySelector('#subscribe_form');
     if (form.attachEvent) {
         form.attachEvent("submit", processForm);
     } else {
         form.addEventListener("submit", processForm);
     }
-})
+    */
+});
+
+
+
+
+
+
+
+
+
+
+
+
+// VANILLA JAVASCRIPT 
+const notifyMe = document.getElementById("notify-me");
+const emailAddress = document.getElementById("email");
+
+
+// MODAL 
+const modal = document.getElementById('myModal');
+const modalHeader = modal.getElementsByTagName('h3')[0];
+const modalParagraph = modal.getElementsByTagName('p')[0];
+const closeModal = document.getElementById('modal-close');
+
+
+
+async function addSubScriber() {
+    try {
+        // console.log("Email value");
+        if (emailAddress.value === null || emailAddress.value === "") {
+            modal.style.display = 'block';
+
+            modalHeader.textContent = 'Invalid Email';
+            emailAddress.value = "";
+            initShare();
+            return false;
+        } else {
+            const response = await axios.post(`${BACKEND_URL}/subscriber/add-subscriber`, { email: emailAddress.value });
+            // console.log(response);
+            // console.log(modalHeader);
+
+            if (response.status === 200) {
+                // const userId = resp.data.user.id;
+                modal.style.display = 'block';
+                modalHeader.textContent = 'Thank you!';
+                modalParagraph.textContent = 'Your credit will be found in your notification email';
+                emailAddress.value = "";
+            } else if (response.status === 208) {
+                modal.style.display = 'block';
+                modalHeader.textContent = 'You Already Subscribed!';
+                modalParagraph.textContent = 'Share with your friends and potential clients below!';
+                emailAddress.value = "";
+            } else if (response.status === 406) {
+                modal.style.display = 'block';
+                modalHeader.textContent = 'Invalid Email!';
+                modalParagraph.textContent = 'Share with your friends and potential clients below!';
+                emailAddress.value = "";
+            }
+            initShare();
+            return false;
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
+notifyMe.addEventListener('click', (e) => {
+    e.preventDefault();
+    addSubScriber();
+});
+
+
+
+
+
+closeModal.addEventListener('click', e => {
+    // e.preventDefault();
+    modal.style.display = "none";
+});
+
+window.addEventListener('click', e => {
+    var modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        if (e.target == modal) {
+            modal.style.display = "none";
+        }
+    })
+});
+
+
+
+/*
+let images = [], x = 0;
+images[0] = "assets/images/pre-launch-site/Hire-Message.png";
+images[1] = "assets/images/pre-launch-site/Hire-Update-Profil.png";
+images[2] = "assets/images/pre-launch-site/Worker-Feed-Timeline.png";
+images[3] = "assets/images/pre-launch-site/Worker-Message.png";
+images[4] = "assets/images/pre-launch-site/Worker-Preview-Profile.png";
+setInterval(function () {
+    x = (x === images.length - 1) ? 0 : x + 1;
+    document.querySelector(".device-mockup").style.backgroundImage = `url('${images[x]}')`;
+}, 4000);
+//End Sliding image
+
+*/
+function initShare() {
+    const currentDomain = window.location.hostname;
+    const emailLink = `mailto:?subject="Title"&body=View Slide at - ${currentDomain}`;
+    const facebookLink = `https://www.facebook.com/sharer/sharer.php?u=${currentDomain}`;
+    const twitterLink = `https://twitter.com/home?status=${currentDomain}`;
+    const linkedinLink = `https://www.linkedin.com/shareArticle?mini=true&url=${currentDomain}`;
+
+    document.querySelector('.share-email').setAttribute('href', emailLink);
+    document.querySelector('.share-facebook').setAttribute('href', facebookLink);
+    document.querySelector('.share-twitter').setAttribute('href', twitterLink);
+    document.querySelector('.share-linkedin').setAttribute('href', linkedinLink);
+}

@@ -8,18 +8,19 @@
     <meta name="keywords" content="kinoverse">
     <link rel="icon" href="assets/images/favicon.png">
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.dropotron.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="assets/js/jquery.min.js"  ></script>
+    <script src="assets/js/jquery.dropotron.min.js"  ></script>
+    <script src="assets/js/jquery.scrollex.min.js"  ></script>
+    <script src="assets/js/jquery.scrolly.min.js"  ></script>
+    <script src="assets/js/browser.min.js"  ></script>
+    <script src="assets/js/breakpoints.min.js"  ></script>
+    <script src="assets/js/util.js"  ></script>
     <link rel="stylesheet" type="text/css" href="lib/html5-device-mockups/dist/device-mockups.min.css">
 
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/custom.css">
-    <script src="https://kit.fontawesome.com/672dd91e53.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/672dd91e53.js" crossorigin="anonymous" defer ></script>
     <style>
         *,
         :after,
@@ -620,7 +621,7 @@
     <div id="banner" class="wrapper">
         <div class="inner">
             <div class="content">
-                <h1 class="standard-font">Digitized film industry - software for filmmaking</h1>
+                <h1 class="standard-font">Digitalized film industry - software for filmmaking</h1>
                 <h2>Filmmaker and content creator marketplace</h2>
                 <h4>
                     In need of filmmaker or video creator? <br />
@@ -629,17 +630,17 @@
                 <div class="signup-section">
                     <p>Signup to get notified of our launch</p>
                     <section class="signup-form">
-                        <form id="subscribe_form" method="post" action="#">
+                        <form id="subscribe_form" >
                             <div class="fields">
-                                <div class="field">
+                                <!-- <div class="field">
                                     <input name="name" id="name" placeholder="Name" type="text" required>
-                                </div>
+                                </div> -->
                                 <div class="field">
                                     <input name="email" id="email" placeholder="Email" type="email" required>
                                 </div>
                                 <div class="field">
                                     <ul class="actions special">
-                                        <li><button type="submit" class="button primary">Notify Me</button></li>
+                                        <li><button type="submit" id="notify-me" class="button primary">Notify Me</button></li>
                                     </ul>
                                 </div>
                             </div>
@@ -1056,13 +1057,14 @@
     </script>
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="close" id="modal-close" >&times;</span>
             <div class="modal-body">
                 <h3>Thank you!</h3>
                 <p>
-                    Your credit will be found in your notification email. <br /> Share with your friends and potential
-                    clients below!
+                    <!-- Your credit will be found in your notification email. <br /> Share with your friends and potential
+                    clients below! -->
                 </p>
+                <p>Share with your friends and potential clients below!</p>
                 <div class="share-wrapper">
                     <a class="icon solid fa-envelope share-email" style="cursor: pointer;">
                         <span class="label">Email</span>
@@ -1084,7 +1086,7 @@
     <div id="navPanel">
         <nav>
         </nav>
-        <a href="#navPanel" class="close" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></a>
+        <a href="#navPanel" class="close"  style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></a>
     </div>
 </body>
 

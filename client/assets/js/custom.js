@@ -1,2 +1,2 @@
 // SME GLOBAL VARIABLES 
-const BACKEND_URL = "http://localhost:1337/api";
+const BACKEND_URL = "http://localhost:4000/api";
