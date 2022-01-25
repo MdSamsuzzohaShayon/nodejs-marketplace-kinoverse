@@ -1,3 +1,5 @@
+[nodejs sequelize](https://www.youtube.com/watch?v=0Yu-4_Vj4sU)
+
 learn - express, sequalize, typescript
 database-1.cvxjhdyzqnyp.us-east-2.rds.amazonaws.com
 https://www.youtube.com/watch?v=ypWzL3PdKx0
