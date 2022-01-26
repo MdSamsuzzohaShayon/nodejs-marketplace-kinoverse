@@ -22,6 +22,9 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // routers
+app.get('/test', (req, res, next) => {
+    res.send("hi")
+})
 app.use('/api/subscriber', subscriberRoutes);
 
 

@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
         // Other model options go here
         sequelize, // We need to pass the connection instance
         freezeTableName: true,
-        modelName: 'subscribers' // We need to choose the model name
+        modelName: 'Subscriber' // We need to choose the model name
     });
 
     return Subscriber;

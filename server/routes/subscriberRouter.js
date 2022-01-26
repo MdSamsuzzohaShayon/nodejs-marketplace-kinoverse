@@ -6,7 +6,7 @@ const router = require('express').Router();
 
 
 
-router.get('/', subscriberController.getAllSubscribers);
+router.get('/all', subscriberController.getAllSubscribers);
 router.post('/add-subscriber', subscriberController.addSubscriber);
 
 
