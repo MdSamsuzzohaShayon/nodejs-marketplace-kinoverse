@@ -33,3 +33,13 @@ __https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-passw
 
 #instance id =         i-0df85b675c6a1ba34
 # security group = sg-0bcda9f6dc73c20ef
+
+
+### S3 
+- Create a s3 bucket with blocking public access
+- Go to aws Identity and Access Management (IAM) -> create policy -> choose service s3 -> from read click on get object -> from write put object, delete object, etc
+- From resource -> add arn -> specify bucket name -> object name check any
+- next set a policy name and keep everything default
+- Go to users -> create a user from application -> access key -> check programetic access
+- In permission -> attach existing policy -> search name of the policy we made
+- Add user and copy access key id and access key secret

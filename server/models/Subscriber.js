@@ -5,7 +5,10 @@ module.exports = (sequelize, DataTypes) => {
 
     class Subscriber extends Model {
         id;
+        name;
         email;
+        resume;
+
         static associate(models) {
             // define association here
             // Subscriber.hasOne()
@@ -18,10 +21,20 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
+        name: {
+            type: DataTypes.STRING,
+        },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
+        },
+        waitlist: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
+        },
+        resume: {
+            type: DataTypes.STRING
         }
     }, {
         // Other model options go here

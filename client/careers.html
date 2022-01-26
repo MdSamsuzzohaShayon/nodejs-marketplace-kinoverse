@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.dropotron.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
@@ -389,30 +390,32 @@
             font-size: 30px;
             margin-right: 15px;
         }
+
         .footer .footer-copyright-and-address {
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    /* background-color: #f4f5f6; */
-    color: #62686e;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: row;
-    flex-direction: row;
-    font-size: 12px;
-    height: 48px;
-    -webkit-box-pack: left;
-    -ms-flex-pack: left;
-    justify-content: left;
-    margin-top: 16px;
-    margin-left: 0;
-    padding-left: 0;
-    padding-top: 16px;
-    width: 100%;
-}
+            -webkit-box-align: start;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            /* background-color: #f4f5f6; */
+            color: #62686e;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            font-size: 12px;
+            height: 48px;
+            -webkit-box-pack: left;
+            -ms-flex-pack: left;
+            justify-content: left;
+            margin-top: 16px;
+            margin-left: 0;
+            padding-left: 0;
+            padding-top: 16px;
+            width: 100%;
+        }
+
         .fr-stack,
         [class*=" rover-icon-"],
         [class^=rover-icon-] {
@@ -542,9 +545,11 @@
             .container {
                 width: 750px;
             }
+
             .footer .footer-copyright-and-address .copyright {
-    margin-right: 5px;
-}
+                margin-right: 5px;
+            }
+
             .form-inline .form-control,
             .navbar-form .form-control {
                 display: inline-block;
@@ -612,7 +617,7 @@
                 </li>
             </ul>
         </nav> -->
-     </header>
+    </header>
     <div id="banner" class="wrapper">
         <div class="inner">
             <div class="content">
@@ -667,16 +672,16 @@
                     <p>Signup below to join the waitlist.</p>
                 </header>
                 <div class="features">
-                    <form method="post" action="#">
+                    <form>
                         <div class="fields">
                             <div class="field half"><input name="name" id="name" placeholder="Name" type="text"></div>
                             <div class="field half"><input name="email" id="email" placeholder="Email" type="email">
                             </div>
                             <div class="field"><label>Upload Resume</label></div>
-                            <div class="field"><input name="message" id="message" type="file" /></div>
+                            <div class="field"><input name="message" id="resume" type="file" /></div>
                             <div class="field">
                                 <ul class="actions special">
-                                    <li><button type="submit" class="button ">Notify Me</button></li>
+                                    <li><button type="submit" class="button" id="notify-me">Notify Me</button></li>
                                 </ul>
                             </div>
                         </div>
@@ -894,7 +899,7 @@
                         </div>
 
 
-<!-- 
+                        <!-- 
                         <div class="help-links hidden-xs">
                             <span class="footer-section-title">Need Help?</span>
                             <ul class="footer-list">
@@ -960,12 +965,12 @@
                     <div class="marketing-footer marketing-footer-social">
                         <div class="marketing-social">
                             <div class="social-footer-links">
-                                <a target="_blank" href="mailto:info@kinoverse.net"
-                                rel="noopener noreferrer" aria-label="Visit Rover on Instagram" data-track-event=""
-                                data-event-type="click" data-event="social-outbound-click"
-                                data-event-merge="{ &quot;socialNetwork&quot;: &quot;instagram&quot; }">
-                                <i class="fas fa-envelope"></i>
-                            </a>
+                                <a target="_blank" href="mailto:info@kinoverse.net" rel="noopener noreferrer"
+                                    aria-label="Visit Rover on Instagram" data-track-event="" data-event-type="click"
+                                    data-event="social-outbound-click"
+                                    data-event-merge="{ &quot;socialNetwork&quot;: &quot;instagram&quot; }">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
                                 <a target="_blank" href="https://www.facebook.com/kinoverseteam"
                                     rel="noopener noreferrer" aria-label="Visit Rover on Facebook" data-track-event=""
                                     data-event-type="click" data-event="social-outbound-click"
@@ -973,7 +978,7 @@
                                     <i class="fab fa-facebook"></i>
                                 </a>
 
-                                
+
 
                                 <a target="_blank" href="https://twitter.com/kinoverseteam" rel="noopener noreferrer"
                                     aria-label="Visit Rover on Twitter" data-track-event="" data-event-type="click"
@@ -1004,6 +1009,35 @@
 
         </div>
     </footer>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="modal-close">&times;</span>
+            <div class="modal-body">
+                <h3>Thank you!</h3>
+                <p>
+                    <!-- Your credit will be found in your notification email. <br /> Share with your friends and potential
+                    clients below! -->
+                </p>
+                <p>Share with your friends and potential clients below!</p>
+                <div class="share-wrapper">
+                    <a class="icon solid fa-envelope share-email" style="cursor: pointer;">
+                        <span class="label">Email</span>
+                    </a>
+                    <a class="icon brands fa-facebook-f share-facebook" style="cursor: pointer;" target="_blank">
+                        <span class="label">Facebook</span>
+                    </a>
+                    <a class="icon brands fa-twitter share-twitter" style="cursor: pointer;" target="_blank">
+                        <span class="label">Twitter</span>
+                    </a>
+                    <a class="icon brands fa-linkedin-in share-linkedin" style="cursor: pointer;" target="_blank">
+                        <span class="label">Linkedin</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <script>
         (function ($) {
             var $window = $(window),
@@ -1119,5 +1153,6 @@
 </body>
 
 <script src="assets/js/custom.js"></script>
+<script src="assets/js/careers.js"></script>
 
 </html>

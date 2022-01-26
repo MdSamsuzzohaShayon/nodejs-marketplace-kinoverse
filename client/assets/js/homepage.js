@@ -135,17 +135,14 @@ async function addSubScriber() {
                 // const userId = resp.data.user.id;
                 modal.style.display = 'block';
                 modalHeader.textContent = 'Thank you!';
-                modalParagraph.textContent = 'Your credit will be found in your notification email';
                 emailAddress.value = "";
             } else if (response.status === 208) {
                 modal.style.display = 'block';
                 modalHeader.textContent = 'You Already Subscribed!';
-                modalParagraph.textContent = 'Share with your friends and potential clients below!';
                 emailAddress.value = "";
             } else if (response.status === 406) {
                 modal.style.display = 'block';
                 modalHeader.textContent = 'Invalid Email!';
-                modalParagraph.textContent = 'Share with your friends and potential clients below!';
                 emailAddress.value = "";
             }
             initShare();
