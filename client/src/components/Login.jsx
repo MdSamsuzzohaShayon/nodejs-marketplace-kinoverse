@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { login, logout } from '../redux/reducer/subscriber';
+import { login, logout } from '../redux/slices/subscriberSlice.js';
 
 const Login = (props) => {
     const dispatch = useDispatch();

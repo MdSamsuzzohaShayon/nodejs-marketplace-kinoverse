@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeColor } from '../redux/reducer/theme';
+import { changeColor } from '../redux/slices/themeSlice';
+// https://www.youtube.com/watch?v=k68j9xlbHHk
 
 const ChangeColor = () => {
     const dispatch = useDispatch();

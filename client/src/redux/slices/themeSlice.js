@@ -12,7 +12,10 @@ export const themeSlice = createSlice({
 });
 
 
-export const { changeColor } = themeSlice.actions;
+
+const { actions, reducer } = themeSlice;
+
+export const { changeColor } = actions;
 
 
-export default themeSlice.reducer;
+export default reducer;
