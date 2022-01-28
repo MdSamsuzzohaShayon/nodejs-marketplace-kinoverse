@@ -7,6 +7,8 @@ if (process.env.NODE_ENV === "development") {
 const express = require('express');
 const cors = require('cors');
 const subscriberRoutes = require('./routes/subscriberRouter.js');
+const userRoutes = require('./routes/userRouter');
+
 const db = require('./models');
 
 
@@ -26,6 +28,7 @@ app.get('/test', (req, res, next) => {
     res.send("hi")
 })
 app.use('/api/subscriber', subscriberRoutes);
+app.use('/api/user', userRoutes);
 
 
 const PORT = process.env.PORT || 4000;
