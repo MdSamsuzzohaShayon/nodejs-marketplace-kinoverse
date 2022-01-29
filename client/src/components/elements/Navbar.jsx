@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
 import { Link } from "react-router-dom";
 
-const pages = [{ name: 'home', link: "/home" }, { name: 'about', link: "/about" }, { name: 'career', link: "/career" }];
+const pages = [{ name: 'home', link: "/home" }, { name: 'about', link: "/about" }, { name: 'career', link: "/career" }, { name: 'login', link: "/login" }];
 const Navbar = (Props) => {
     const [anchorElNav, setAnchorElNav] = useState(null);
 
@@ -59,11 +59,23 @@ const Navbar = (Props) => {
                             display: { xs: 'block', md: 'none' },
                         }}
                     >
-                        {pages.map((page, i) => (
-                            <MenuItem key={i} onClick={handleCloseNavMenu}>
-                                <Link to={page.link}><Typography textAlign="center">{page.name}</Typography></Link>
-                            </MenuItem>
-                        ))}
+                        {pages.map((page, i) => {
+                            if (page.name === "login") {
+                                const userToken = localStorage.getItem('token');
+                                if (userToken === null) {
+                                    return <MenuItem key={i} onClick={handleCloseNavMenu}>
+                                        <Link to={page.link}><Typography textAlign="center">{page.name}</Typography></Link>
+                                    </MenuItem>;
+                                } else {
+                                    return;
+                                }
+                            } else {
+                                // console.log(page.name);
+                                return <MenuItem key={i} onClick={handleCloseNavMenu}>
+                                    <Link to={page.link}><Typography textAlign="center">{page.name}</Typography></Link>
+                                </MenuItem>;
+                            }
+                        })}
                     </Menu>
                 </Box>
                 <Typography
@@ -75,15 +87,32 @@ const Navbar = (Props) => {
                     LOGO
                 </Typography>
                 <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                    {pages.map((page, i) => (
-                        <Button
-                            key={i}
-                            onClick={handleCloseNavMenu}
-                            sx={{ my: 2, color: 'white', display: 'block' }}
-                        >
-                            <Link to={page.link}>{page.name}</Link>
-                        </Button>
-                    ))}
+                    {pages.map((page, i) => {
+
+                        if (page.name === "login") {
+                            const userToken = localStorage.getItem('token');
+                            if (userToken === null) {
+                                return <Button
+                                    key={i}
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    <Link to={page.link}>{page.name}</Link>
+                                </Button>
+                            } else {
+                                return;
+                            }
+                        } else {
+                            // console.log(page.name);
+                            return <Button
+                                key={i}
+                                onClick={handleCloseNavMenu}
+                                sx={{ my: 2, color: 'white', display: 'block' }}
+                            >
+                                <Link to={page.link}>{page.name}</Link>
+                            </Button>
+                        }
+                    })}
                 </Box>
 
                 <Box sx={{ flexGrow: 0 }}>

@@ -8,19 +8,28 @@ const { User } = db;
 
 const login = async (req, res, next) => {
     const errors = validationResult(req);
+    // console.log(errors);
     if (!errors.isEmpty()) {
         return res.status(406).json({ error: errors.array() });
     }
+
 
     const { email, password } = req.body;
 
     try {
         const userExist = await User.findOne({ where: { email } });
-        if (!userExist) return res.status(404).json({ message: "User doesn't exist" });
-        const isPasswordCorrect = await bcrypt.compare(password, userExist.password);
+        // console.log(userExist, "exist");
+        if (!userExist) return res.status(404).json({ msg: "User doesn't exist" });
+        const isPasswordCorrect = await bcrypt.compare(password, userExist.dataValues.password);
         if (!isPasswordCorrect) return res.status(406).json({ message: "Invalid credentials" });
         const token = jwt.sign({ email: userExist.email, id: userExist.id }, process.env.JWT_SECRET, { expiresIn: "1h" });
-        res.status(200).json({ user: userExist, token });
+        const newUser = {
+            name: userExist.name,
+            email: userExist.email,
+            role: userExist.role,
+            id: userExist.id,
+        };
+        res.status(200).json({ user: newUser, token });
     } catch (err) {
         res.status(500).json({ message: "Something went wrong" });
     }
@@ -62,29 +71,22 @@ const register = async (req, res, next) => {
 
 
 const getAllUsers = async (req, res, next) => {
-    let allUsers = await User.findAll();
-    // console.log(req.userId);
-    // const newUserList = [];
-    // for (let i = 0; i < allUsers.length; i++) {
-    //         newUserList.push() ;
-    // }
-    console.log("before all user - ");
-    allUsers = allUsers.map((user, i) => {
-        // console.log("inside all user - ");
-        return {
-            name: user.name,
-            email: user.email,
-            phone: user.phone,
-            role: user.role,
-        }
-    });
-    // console.log("after all user - ");
-    // "password": "$2a$10$5nIiJCwVnd3KiAohiAKWrOX2nUTQpZ4jBR.phPJdZUUMZ9u2YvKjS",
-    //         "name": "Lionel Messi",
-    //         "phone": "248473643746",
-    //         "email": "lionel@psg.com",
-    //         "role": "SUPER",
-    res.status(200).json({ msg: "all users", allUsers });
+    try {
+        let allUsers = await User.findAll();
+
+        allUsers = allUsers.map((user, i) => {
+            // console.log("inside all user - ");
+            return {
+                name: user.name,
+                email: user.email,
+                phone: user.phone,
+                role: user.role,
+            }
+        });
+        res.status(200).json({ msg: "all users", allUsers });
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 

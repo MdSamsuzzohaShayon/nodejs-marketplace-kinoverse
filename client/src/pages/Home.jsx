@@ -1,12 +1,10 @@
 import React from 'react';
 import useStyles from '../styles/Home.style.js';
 import { Grid, Container, Typography, OutlinedInput, FormControl, FormHelperText } from '@mui/material';
-import Navbar from '../components/elements/Navbar.jsx';
 
 function Home() {
     const classes = useStyles();
     return (<div className='Home'>
-        <Navbar />
         <Container maxWidth="xl" >
             {/* item container direction="row" */}
             {/* direction="column-reverse" */}

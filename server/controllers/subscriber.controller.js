@@ -31,8 +31,8 @@ const addSubscriber = async (req, res) => {
 const getAllSubscribers = async (req, res) => {
 
     try {
-        const subscriber = await Subscriber.findAll({});
-        res.status(200).json({ msg: "Get all Subscribers", subscriber });
+        const subscriberList = await Subscriber.findAll({});
+        res.status(200).json({ msg: "Get all Subscribers", subscriberList });
     } catch (error) {
         throw error;
     }

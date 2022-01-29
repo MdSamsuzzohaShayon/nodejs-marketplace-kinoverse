@@ -1,24 +1,51 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { BACKEND_URL } from '../../config/keys.js';
 
 
-const initialStateValue = [
-    { id: 1, name: 'A', email: "example1@gmail.com", role: "SUPER" },
-    { id: 2, name: 'B', email: "example2@gmail.com", role: "SUPER" },
-    { id: 3, name: 'C', email: "example3@gmail.com", role: "GENERAL" },
-    { id: 4, name: 'D', email: "example4@gmail.com", role: "GENERAL" },
-    { id: 5, name: 'E', email: "example5@gmail.com", role: "GUEST" },
-];
+const initialStateValue = [];
+
+export const getAllUsers = createAsyncThunk('user/getAllUsers', async (users, thunkAPI) => {
+    try {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        };
+
+        const response = await axios.get(`${BACKEND_URL}/user/all`, config);
+        if (response.status === 200) {
+            return response.data.allUsers;
+        }
+        return initialStateValue;
+    } catch (error) {
+        // console.log(error);
+        return initialStateValue;
+    }
+});
+
+
+
+
+
+
 
 
 // FETCH USER CREDENTIALS
 const userSlice = createSlice({
     name: "user",
-    initialState: { value: initialStateValue },
+    initialState: { allUsers: initialStateValue, userInput: { username: null, email: null } },
     reducers: {
+        changeUser: (state, action) => {
+            state.userInput = action.payload
+            // console.log("Create user state - ", state.value);
+            // console.log("Create user action - ", action.payload);
+        },
         // CREATE USER 
         createUser: (state, action) => {
-            console.log("Create user state - ", state);
-            console.log("Create user action - ", action);
+            // console.log("Create user state - ", state);
+            // console.log("Create user action - ", action);
             state.value = [...state, action.payload]
         },
         // DELETE USER 
@@ -26,6 +53,12 @@ const userSlice = createSlice({
             // SEND DELETE REQUEST TO BACKEND 
             state.value = state.filter((item) => item.id !== action.payload);
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(getAllUsers.fulfilled, (state, action) => {
+            // console.log(action.payload);
+            state.allUsers = action.payload;
+        });
     }
 });
 
@@ -34,5 +67,5 @@ const userSlice = createSlice({
 
 const { actions, reducer } = userSlice;
 
-export const { createUser, deleteUser } = actions;
+export const { createUser, deleteUser, changeUser } = actions;
 export default reducer;

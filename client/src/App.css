@@ -1,4 +1,6 @@
 .App{
     color: white;
+    /* color: rgba(8, 9, 71, 0.329); */
     background-color: #24242a;
+    min-height: 100vh;
 }

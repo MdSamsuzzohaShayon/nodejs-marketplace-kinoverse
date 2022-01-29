@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { styled, useTheme } from '@mui/material/styles';
-import { Box, Drawer, CssBaseline, Toolbar, List, Typography, Divider, ListItemText, ListItem, ListItemButton } from '@mui/material';
+import { Box, Drawer, CssBaseline, Toolbar, List, Divider, ListItemText, ListItem, ListItemButton, IconButton, ListItemIcon, Collapse, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
-import { IconButton, ListItemIcon } from '@mui/material';
 import { Person, ChevronRight, ChevronLeft, Menu, People, HourglassBottom } from "@mui/icons-material";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { CustomToolbar } from '../styles/Theme.style.js';
+import { useDispatch } from 'react-redux';
+import { getAllUsers } from '../redux/slices/userSlice.js';
+import { getAllSubscribers } from '../redux/slices/subscriberSlice';
 
 
+// MATERIAL UI STYLING START 
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -54,15 +60,30 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     justifyContent: 'flex-end',
 }));
 
+// MATERIAL UI STYLING ENDS 
 
 
-const USERS = "Users", SUB = "Subscribers", WAITLIST = "Waitlist";
+
+
+
+
+
+
 
 
 
 function Admin() {
-    const userList = useSelector(state => state.user.value);
+    const dispatch = useDispatch();
+    const USERS = "Users", SUB = "Subscribers", WAITLIST = "Waitlist";
+    const userList = useSelector(state => state.user.allUsers);
+    const subscriberList = useSelector(state => state.subscriber.subscriberList);
+    const waitlist = useSelector(state => state.subscriber.waitlist);
+
+
+
     const theme = useTheme();
+    const mounted = true;
+
 
 
     const [open, setOpen] = useState(false);
@@ -75,6 +96,15 @@ function Admin() {
     };
 
 
+    useState(() => {
+        // GRAB ALL SUBSCRIBERS AND USERS 
+        // getAllUsers();
+        dispatch(getAllUsers());
+        dispatch(getAllSubscribers());
+
+    }, []);
+
+
 
 
     const initialMenuItemList = [{ id: 1, title: USERS, icon: <Person /> }, { id: 2, title: SUB, icon: <People /> }, { id: 3, title: WAITLIST, icon: <HourglassBottom /> }];
@@ -82,22 +112,80 @@ function Admin() {
     const [selectedItem, setSelectedItem] = useState(USERS);
 
     const contentElement = () => {
-        console.log(userList);
+        // console.log(userList);
         switch (selectedItem) {
             case USERS:
                 return <Box>
-                    {userList.map((user, i) => (<ListItemButton key={i} component="a" href="#simple-list">
+                    {userList.length > 0 && userList.map((user, i) => (<ListItemButton key={i} component="a" href="#simple-list">
                         <ListItemText primary={user.name} />
                     </ListItemButton>))}
                 </Box>
             case SUB:
-                return <Typography paragraph>
-                    Subscribers
-                </Typography>
+                return <Box >
+                    <Typography variant='h3'>Subscriber</Typography>
+                    <TableContainer component={Paper}>
+                        <Table aria-label="collapsible table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell />
+                                    <TableCell align="left">Serial</TableCell>
+                                    <TableCell align="left">ID</TableCell>
+                                    <TableCell align="left">Email&nbsp;(g)</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {subscriberList && subscriberList.length > 0 && subscriberList.map((subscriber, i) => (<TableRow key={i} sx={{ '& > *': { borderBottom: 'unset' } }}>
+                                    <TableCell>
+                                        <IconButton
+                                            aria-label="expand row"
+                                            size="small"
+                                            onClick={() => setOpen(!open)}
+                                        >
+                                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                        </IconButton>
+                                    </TableCell>
+                                    <TableCell align="left">{i + 1}</TableCell>
+                                    <TableCell align="left">{subscriber.id}</TableCell>
+                                    <TableCell align="left">{subscriber.email}</TableCell>
+                                </TableRow>))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>;
             case WAITLIST:
-                return <Typography paragraph>
-                    WaitList
-                </Typography>
+                return <Box>
+                    <Typography variant='h3'>Waitlist</Typography>
+                    <TableContainer component={Paper}>
+                        <Table aria-label="collapsible table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell />
+                                    <TableCell align="left">Serial</TableCell>
+                                    <TableCell align="left">ID</TableCell>
+                                    <TableCell align="left">Name&nbsp;</TableCell>
+                                    <TableCell align="left">Email&nbsp;</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {waitlist && waitlist.length > 0 && waitlist.map((wait, i) => (<TableRow key={i} sx={{ '& > *': { borderBottom: 'unset' } }}>
+                                    <TableCell>
+                                        <IconButton
+                                            aria-label="expand row"
+                                            size="small"
+                                            onClick={() => setOpen(!open)}
+                                        >
+                                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                        </IconButton>
+                                    </TableCell>
+                                    <TableCell align="left">{i + 1}</TableCell>
+                                    <TableCell align="left">{wait.id}</TableCell>
+                                    <TableCell align="left">{wait.name}</TableCell>
+                                    <TableCell align="left">{wait.email}</TableCell>
+                                </TableRow>))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
         }
     }
 
@@ -108,7 +196,7 @@ function Admin() {
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
-                <Toolbar>
+                <CustomToolbar>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -118,10 +206,18 @@ function Admin() {
                     >
                         <Menu />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Persistent drawer
+                    <Typography
+                        variant="h5"
+                        noWrap
+                        component="div"
+                        sx={{ flexGrow: 1, alignSelf: 'flex-start' }}
+                    >
+                        Kinoverse
                     </Typography>
-                </Toolbar>
+                    <IconButton size="large" aria-label="search" color="inherit">
+                        <Menu />
+                    </IconButton>
+                </CustomToolbar>
             </AppBar>
             <Drawer
                 sx={{
@@ -156,37 +252,24 @@ function Admin() {
             <Main open={open}>
                 <DrawerHeader />
                 {contentElement()}
-
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
             </Main>
         </Box>
     );
 }
 
 export default Admin;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
