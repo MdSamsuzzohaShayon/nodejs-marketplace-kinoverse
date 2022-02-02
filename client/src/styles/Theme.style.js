@@ -31,6 +31,11 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 const globalFontFamily = "Courier Prime, Source Sans Pro, Arial, Helvetica, sans-serif"
 // font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
 const theme = createTheme({
+  palette: {
+    error: {
+      main: "rgb(213, 72, 87)",
+    }
+  },
   typography: {
     fontFamily: globalFontFamily,
     // color: "blue",

@@ -1,116 +1,78 @@
-import React from 'react';
+import React, { useState } from 'react';
+import useStyles from '../../styles/Elements.style.js';
+import { Box, Container, Grid, Typography, List, ListItem } from '@mui/material';
+import { Facebook, Drafts, Twitter, LinkedIn } from "@mui/icons-material";
+import LinkMUI from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 
 const Footer = (props) => {
-    return <div className='Footer'>
-        <footer className="new-design js-new-design footer-container" role="contentinfo">
-            <div className="footer">
-                <div className="container">
+    const classes = useStyles();
+    const font = "Averta, Avenir, Helvetica Neue, Calibri, Helvetica, Roboto, sans-serif";
+
+    const initialShareIcon = [
+        {
+            url: "https://www.facebook.com/kinoverseteam",
+            component: <Facebook color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></Facebook>
+        },
+        {
+            url: "https://twitter.com/kinoverseteam",
+            component: <Twitter color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></Twitter>
+        },
+        {
+            url: "mailto:info@kinoverse.net",
+            component: <Drafts color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></Drafts>
+        },
+        {
+            url: "https://www.linkedin.com/company/kinoverse",
+            component: <LinkedIn color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></LinkedIn>
+        }
+    ]
+    const [shareIcons, setShareIcons] = useState(initialShareIcon);
 
 
-                    <div className="container col-md-8 padding-left-x0">
+    return <Box className={classes.footer_wrapper}>
+        <Container maxWidth='xl'>
+            <Grid container spacing={2} >
+                <Grid item xs={12} md={6}>
+                    <Typography variant="h4" sx={{ fontFamily: font }}  >About Kinoverse</Typography>
+                    <Box>
+                        <List>
+                            <ListItem >
+                                <Link to={'/about'} className={classes.footer_link} >About</Link>
+                            </ListItem>
+                            <ListItem >
+                                <Link to={'/career'} className={classes.footer_link} >Career</Link>
+                            </ListItem>
+                        </List>
+                    </Box>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                    <Box>
+                        <Typography variant='h4' sx={{ fontFamily: font }} >Ready to signup?</Typography>
+                        <Typography my={3} sx={{ fontSize: '0.8em', fontFamily: font, fontWeight: 200 }}>
+                            You can use the signup form above to signup for the pre-launch.
+                            Please provide a valid email address to receive a $10 credit coupon code for FREE.
+                        </Typography>
+                    </Box>
+                    <Box>
 
-                        <div className="footer-links-wrapper">
-
-
-
-
-
-                            <div className="about-rover-links">
-                                <span className="footer-section-title">About Kinoverse</span>
-                                <div className="row">
-                                    <div className="col-xs-6 col-sm-5">
-                                        <ul className="footer-list">
-
-
-                                            <li>
-                                                <a href="/about-us.html">About Us</a>
-                                            </li>
-
-
-
-
-                                            <li>
-                                                <a className="js-careers-link-click-listener" href="/careers.html">Careers</a>
-                                            </li>
-
-
-
-
-
-
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className="col-md-4 padding-left-x0 padding-right-x0">
+                        {shareIcons.map((icon, i) => (
+                            <LinkMUI key={i} target="_blank" href={icon.url} >
+                                {icon.component}
+                            </LinkMUI>
+                        ))}
+                        {/* <a target="_blank" href="mailto:info@kinoverse.net" rel="noopener noreferrer" aria-label="Visit Rover on Instagram" data-track-event="" data-event-type="click" data-event="social-outbound-click" data-event-merge="{ &quot;socialNetwork&quot;: &quot;instagram&quot; }">
+                            <i className="fas fa-envelope" aria-hidden="true"></i>
+                        </a> */}
+                    </Box>
 
 
+                </Grid>
+            </Grid>
+            <Typography py={2} sx={{ color: "#62686e", fontFamily: font, fontSize: "0.8em" }}>© 2021-2022 Kinoverse Corp. All rights reserved.</Typography>
 
-                        <div className="marketing-footer marketing-footer-email">
-                            <div className="marketing-email-capture">
-                                <span className="footer-section-title">Ready to signup?</span>
-                                <div className="js-email-capture-footer-form-failure hidden">
-                                    <p className="text-tertiary">
-                                        Please enter a valid email address.
-                                    </p>
-                                </div>
-                                <div className="js-email-capture-footer-form-thanks hidden" role="status">
-                                    <p className="text-primary">
-                                        <i className="rover-icon rover-icon-checked rover-icon-lg"></i>
-                                        Success! Thanks for subscribing!
-                                    </p>
-                                </div>
-
-                                <p className="privacy-policy help-text text-left small-text margin-top-x3 padding-right-x1">
-                                    <span>You can use the signup form above to signup for the pre-launch.</span>
-                                    Please provide a valid email address to receive a $10 credit coupon code for FREE.
-                                </p>
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div className="marketing-footer marketing-footer-social">
-                            <div className="marketing-social">
-                                <div className="social-footer-links">
-                                    <a target="_blank" href="mailto:info@kinoverse.net" rel="noopener noreferrer" aria-label="Visit Rover on Instagram" data-track-event="" data-event-type="click" data-event="social-outbound-click" data-event-merge="{ &quot;socialNetwork&quot;: &quot;instagram&quot; }">
-                                        <i className="fas fa-envelope" aria-hidden="true"></i>
-                                    </a>
-                                    <a target="_blank" href="https://www.facebook.com/kinoverseteam" rel="noopener noreferrer" aria-label="Visit Rover on Facebook" data-track-event="" data-event-type="click" data-event="social-outbound-click" data-event-merge="{ &quot;socialNetwork&quot;: &quot;facebook&quot; }">
-                                        <i className="fab fa-facebook" aria-hidden="true"></i>
-                                    </a>
-
-
-
-                                    <a target="_blank" href="https://twitter.com/kinoverseteam" rel="noopener noreferrer" aria-label="Visit Rover on Twitter" data-track-event="" data-event-type="click" data-event="social-outbound-click" data-event-merge="{ &quot;socialNetwork&quot;: &quot;twitter&quot; }">
-                                        <i className="fab fa-twitter-square" aria-hidden="true"></i>
-                                    </a>
-
-                                    <a target="_blank" href="https://www.linkedin.com/company/kinoverse" rel="noopener noreferrer" aria-label="Visit Rover on Pinterest" data-track-event="" data-event-type="click" data-event="social-outbound-click" data-event-merge="{ &quot;socialNetwork&quot;: &quot;pinterest&quot; }">
-                                        <i className="fab fa-linkedin" aria-hidden="true"></i>
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-                    <div className="container footer-copyright-and-address">
-                        <span className="copyright">© 2021-2022 Kinoverse Corp. All rights reserved.</span>
-                    </div>
-                </div>
-
-            </div>
-        </footer>
-    </div>;
+        </Container>
+    </Box>;
 };
 
 export default Footer;

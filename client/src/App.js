@@ -5,6 +5,7 @@ import Career from './pages/Career';
 import Home from './pages/Home';
 import About from './pages/About';
 import Navbar from './components/elements/Navbar';
+import Footer from './components/elements/Footer';
 import Admin from './pages/Admin';
 import RequireAuth from './components/admin/RequiredAuth';
 import NotLoggedIn from './components/admin/NotLoggedIn';
@@ -59,6 +60,7 @@ function App() {
           }
         />
       </Routes>
+      <Footer />
     </Box >
   );
 }

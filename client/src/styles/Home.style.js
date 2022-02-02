@@ -8,7 +8,7 @@ const black = 'rgb(31, 31, 36)';
 const useStyles = makeStyles((theme) => ({
     image_fluid: {
         width: "100%",
-        height: "100%"
+        // height: "100%",
         // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         // border: 0,
         // borderRadius: 3,
@@ -16,6 +16,12 @@ const useStyles = makeStyles((theme) => ({
         // color: 'white',
         // height: 48,
         // padding: '0 30px',
+        [theme.breakpoints.down('md')]: {
+            width: "35%",
+        },
+        [theme.breakpoints.down('sm')]: {
+            width: "70%"
+        }
     },
     input_field: {
         border: `solid 2px ${gray}`
@@ -42,6 +48,12 @@ const useStyles = makeStyles((theme) => ({
         transform: "rotate(45deg)",
         borderRadius: "1em",
         marginLeft: "37%",
+        [theme.breakpoints.down('md')]: {
+            marginLeft: "35%"
+        },
+        [theme.breakpoints.down('sm')]: {
+            marginLeft: "32%"
+        },
     },
     icon_img: {
         width: "4em",

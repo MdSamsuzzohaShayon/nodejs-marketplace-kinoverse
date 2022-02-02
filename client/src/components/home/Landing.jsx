@@ -32,10 +32,10 @@ const Landing = () => {
         {/* direction="column-reverse" */}
         <Grid container spacing={2} columns={{ xs: 4, md: 12 }} sx={{ flexDirection: (flexDirReverse ? "column-reverse" : 'row'), }} className={classes.grid_br} pb={5}  >
 
-            <Grid item xs={6} md={8} >
+            <Grid item xs={6} md={8} sx={{ textAlign: { xs: 'center', md: 'left' } }} >
 
                 <Typography variant='h1' my={5}>Digitalized film industry - software for filmmaking</Typography>
-                <Typography variant='h2' mb={5}>Filmmaker and content creator marketplace</Typography>
+                <Typography variant='h2' mb={5} >Filmmaker and content creator marketplace</Typography>
                 <Typography variant="h4" mb={5}>In need of filmmaker or video creator? <br />
                     Are you film maker or video content creator?</Typography>
 
@@ -69,7 +69,7 @@ const Landing = () => {
                     Signing up pre-launch will give you a $10 credit applied towards service fees. Limited one code per person. * Promo code will be emailed *
                 </Typography>
             </Grid>
-            <Grid item xs={6} md={4}>
+            <Grid item xs={6} md={4} sx={{ textAlign: { xs: 'center', md: 'right' } }}>
                 <img src="./img/mobile.png" className={classes.image_fluid} alt="" />
                 {/* <img
               src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
@@ -79,7 +79,7 @@ const Landing = () => {
           /> */}
             </Grid>
         </Grid>
-    </Container>;
+    </Container >;
 };
 
 export default Landing;
