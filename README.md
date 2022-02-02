@@ -43,3 +43,30 @@ __https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-passw
 - Go to users -> create a user from application -> access key -> check programetic access
 - In permission -> attach existing policy -> search name of the policy we made
 - Add user and copy access key id and access key secret
+
+
+
+
+### AWS certificate manager 
+- Request a certificate -> enter domain (will get name and value for cname)- validate domain (by creating cname record we can validate)
+- Create cname record from route 53 domain (if it is already created then just exit it) - > change cname and cname value according to aws ec2 certificate manager certificate - after validation we can see success message
+- from ec2 instance - client load balencer (left panel) -> 
+
+Create application load balancer
+set  name - check all mapping zome (e.g: us-est-2b) - security group as same as ec2 instance group -> 
+click on specific load balancer and edit http(80) -> remove default acction -> add redirect -> select https -> port number 443
+Create target group - register a target
+
+route 53
+
+
+### Task List 📜📜
+
+ 📌 Hosting node js and vanilla js on AWS ec2 instance <br/>
+ 📌 Change backend code TypeScript to JavaScript to fix an issue of memory <br/>
+ 📌 Get subscriber and waitlist form working <br/>
+ 📌 AWS S3 setup to upload PDF file upload <br/>
+ 📌 Create a simple admin page in react <br/>
+ 📌 Setup domain and SSL certificate (AWS route 53, AWS load balancer, AWS certificate manager) <br/>
+ 📌 Convert Vanilla JavaScript to React.js (react-router, material-ui, redux toolkit) <br/>
+

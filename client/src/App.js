@@ -9,11 +9,13 @@ import Admin from './pages/Admin';
 import RequireAuth from './components/admin/RequiredAuth';
 import NotLoggedIn from './components/admin/NotLoggedIn';
 import Login from './components/admin/Login';
-
+import { Box } from '@mui/material';
+import useStyles from './styles/App.style.js';
 
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
+    <Box className={classes.app} >
       <Routes>
         <Route path="/" element={
           <React.Fragment>
@@ -57,7 +59,7 @@ function App() {
           }
         />
       </Routes>
-    </div >
+    </Box >
   );
 }
 

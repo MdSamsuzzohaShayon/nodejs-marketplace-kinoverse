@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="500"
+   height="500"
+   viewBox="0 0 132.29166 132.29167"
+   version="1.1"
+   id="svg5"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2">
+    <style
+       id="style1511">.cls-1{fill:#b06550;}.cls-2{fill:#c8785c;}.cls-3{fill:#ecf0f1;}.cls-4{fill:#4c5665;}</style>
+  </defs>
+  <g
+     id="layer1">
+    <g
+       data-name="Business case"
+       id="Business_case"
+       transform="matrix(2.7299679,0,0,2.7299679,0.54483976,0.63074091)"
+       style="fill:#d54857;fill-opacity:1">
+      <path
+         class="cls-1"
+         d="m 2,21 h 44 v 24 a 2,2 0 0 1 -2,2 H 4 A 2,2 0 0 1 2,45 Z"
+         id="path1517"
+         style="fill:#d54857;fill-opacity:1" />
+      <path
+         class="cls-2"
+         d="M 48,25 C 41,33 9,33 0,25 V 11 h 48 z"
+         id="path1519"
+         style="fill:#d54857;fill-opacity:1" />
+      <path
+         class="cls-2"
+         d="M 48,25 C 41,33 9,33 0,25 V 11 h 48 z"
+         id="path1521"
+         style="fill:#d54857;fill-opacity:1" />
+      <rect
+         class="cls-3"
+         height="6"
+         rx="1"
+         ry="1"
+         width="8"
+         x="20"
+         y="28"
+         id="rect1523"
+         style="fill:#d54857;fill-opacity:1" />
+      <path
+         class="cls-4"
+         d="m 13.936,8.068 -4,-0.118 A 6.958,6.958 0 0 1 17.062,1 h 14 a 6.8,6.8 0 0 1 7,7 h -4 a 2.824,2.824 0 0 0 -3,-3 h -14 a 2.971,2.971 0 0 0 -3.126,3.068 z"
+         id="path1525"
+         style="fill:#d54857;fill-opacity:1" />
+      <path
+         class="cls-2"
+         d="m 47,8 v 3 H 0 V 9 A 1,1 0 0 1 1,8 Z"
+         id="path1527"
+         style="fill:#d54857;fill-opacity:1" />
+      <path
+         class="cls-2"
+         d="m 47,8 v 0 a 1,1 0 0 1 1,1 v 2 H 46 V 9 a 1,1 0 0 1 1,-1 z"
+         id="path1529"
+         style="fill:#d54857;fill-opacity:1" />
+      <rect
+         class="cls-1"
+         height="7"
+         rx="1"
+         ry="1"
+         width="18"
+         x="15"
+         y="15"
+         id="rect1531"
+         style="fill:#d54857;fill-opacity:1" />
+    </g>
+  </g>
+</svg>
