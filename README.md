@@ -69,4 +69,9 @@ route 53
  📌 Create a simple admin page in react <br/>
  📌 Setup domain and SSL certificate (AWS route 53, AWS load balancer, AWS certificate manager) <br/>
  📌 Convert Vanilla JavaScript to React.js (react-router, material-ui, redux toolkit) <br/>
+ 📌 A single page. 
+ 📌 Text and images explaining the contest (I will provide)
+ 📌 form for the user to sign up and include a payment processor that charges them $50
+ 📌 Login to and submit their screenplay via upload.
+ 📌 terms of service built in
 

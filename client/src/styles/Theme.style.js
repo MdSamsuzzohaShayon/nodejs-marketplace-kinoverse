@@ -1,6 +1,5 @@
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-import { orange } from '@mui/material/colors';
-import { OutlinedInput, Toolbar } from "@mui/material";
+import { createTheme, styled } from '@mui/material/styles';
+import { OutlinedInput, Toolbar, Input } from "@mui/material";
 
 /*
 const CustomCheckbox = styled(Checkbox)(({ theme }) => ({
@@ -35,6 +34,9 @@ const theme = createTheme({
     error: {
       main: "rgb(213, 72, 87)",
     }
+  },
+  "*": {
+    overflow: "hidden"
   },
   typography: {
     fontFamily: globalFontFamily,
@@ -117,7 +119,45 @@ const CustomToolbar = styled(Toolbar)((props) => ({
 
 
 
+// border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+// left: 0;
+// bottom: 0;
+// content: "\00a0";
+// position: absolute;
+// right: 0;
+// -webkit-transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+// transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+// pointer-events: none;
+
+
+const CustomFileInput = styled(Input)(({ theme }) => {
+  return {
+    color: "white",
+    marginTop: '1rem',
+    '::before': {
+      border: 'none',
+      position: 'static',
+      content: 'none',
+    },
+    '::after': {
+      border: 'none',
+      position: 'static',
+      content: 'none'
+    }
+  }
+});
 
 
 
-export { CustomOutlinedInput, CustomToolbar, theme };
+
+
+
+export {
+  // COMPONENT / ELEMENT 
+  CustomOutlinedInput,
+  CustomToolbar,
+  CustomFileInput,
+
+  // ROOT THEME DESIGN 
+  theme
+};
