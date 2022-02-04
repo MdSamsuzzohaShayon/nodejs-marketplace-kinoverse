@@ -3,26 +3,13 @@ import useStyles from '../../styles/Home.style.js';
 import { Grid, Container, Typography, FormControl, Box, Button } from '@mui/material';
 import { CustomOutlinedInput } from '../../styles/Theme.style.js';
 import { ArrowForward } from '@mui/icons-material';
+import { useSelector } from 'react-redux';
 
 
 
 const Landing = () => {
     const classes = useStyles();
-    const [flexDirReverse, setFlexDirReverse] = useState(false);
-    // const [winSize, setWinSize]
-    const resizeObserver = new ResizeObserver(entities => {
-        // console.log(entities);
-        for (let entity of entities) {
-            // console.log(entity.contentRect.width);
-            if (entity.contentRect.width >= 900) {
-                // FLEX DIRECTION REVERSE 
-                setFlexDirReverse(false);
-            } else {
-                setFlexDirReverse(true);
-            }
-        }
-    });
-    resizeObserver.observe(document.body);
+    const resizeScreen = useSelector((state) => state.theme.resizeScreen);
 
 
 
@@ -30,7 +17,7 @@ const Landing = () => {
     return <Container maxWidth="xl"  >
         {/* item container direction="row" */}
         {/* direction="column-reverse" */}
-        <Grid container spacing={2} columns={{ xs: 4, md: 12 }} sx={{ flexDirection: (flexDirReverse ? "column-reverse" : 'row'), }} className={classes.grid_br} pb={5}  >
+        <Grid container spacing={2} columns={{ xs: 4, md: 12 }} sx={{ flexDirection: (resizeScreen ? "column-reverse" : 'row'), }} className={classes.grid_br} pb={5}  >
 
             <Grid item xs={6} md={8} sx={{ textAlign: { xs: 'center', md: 'left' } }} >
 
