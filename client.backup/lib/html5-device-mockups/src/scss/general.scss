@@ -1,0 +1,31 @@
+$mockup-path: '../device-mockups' !default;
+
+.device-wrapper {
+    max-width: 300px;
+    width: 100%;
+}
+
+.device {
+    position: relative;
+    background-size: cover;
+
+    &::after {
+        position: absolute;
+        background-size: cover;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+    
+    .screen {
+        position: absolute;
+        background-size: cover;
+        pointer-events: auto;
+    }
+
+
+    .button {
+        position: absolute;
+        cursor: pointer;
+    }
+}

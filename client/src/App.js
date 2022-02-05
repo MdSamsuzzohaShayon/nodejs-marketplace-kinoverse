@@ -17,7 +17,7 @@ function App() {
   const classes = useStyles();
   return (
     <Box className={classes.app} >
-      <Routes>
+      <Routes >
         <Route path="/" element={
           <React.Fragment>
             <Navbar />
@@ -60,6 +60,7 @@ function App() {
           }
         />
       </Routes>
+
       <Footer />
     </Box >
   );

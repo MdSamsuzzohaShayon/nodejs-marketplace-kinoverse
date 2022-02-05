@@ -38,6 +38,9 @@ const Footer = (props) => {
                     <Box>
                         <List>
                             <ListItem >
+                                <Link to={'/'} className={classes.footer_link} >Home</Link>
+                            </ListItem>
+                            <ListItem >
                                 <Link to={'/about'} className={classes.footer_link} >About</Link>
                             </ListItem>
                             <ListItem >
