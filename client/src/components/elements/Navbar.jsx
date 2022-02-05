@@ -45,7 +45,9 @@ const Navbar = (Props) => {
                         component="div"
                         sx={{ mr: 2, display: { xs: 'flex', md: 'flex' }, width: { xs: '10rem', md: "18rem" } }}
                     >
-                        <img src="./img/logo.png" width="100%" alt="" />
+                        <Link to='/' >
+                            <img src="./img/logo.png" width="100%" alt="" />
+                        </Link>
                     </Typography>
                 </Toolbar>
             </Container>

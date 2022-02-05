@@ -1,15 +1,60 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { BACKEND_URL } from '../../config/keys.js';
 import useStyles from '../../styles/Home.style.js';
 import { Grid, Container, Typography, FormControl, Box, Button } from '@mui/material';
 import { CustomOutlinedInput } from '../../styles/Theme.style.js';
 import { ArrowForward } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import CustomModal from '../elements/CustomModal';
+import { openModal, changeText } from '../../redux/slices/modalSlice.js';
+import axios from 'axios';
 
 
 const Landing = () => {
     const classes = useStyles();
     const resizeScreen = useSelector((state) => state.theme.resizeScreen);
+    const dispatch = useDispatch();
+    const [currentSubscriber, setCurrentSubscriber] = useState('');
+
+
+    async function addSubScriber() {
+        try {
+            // console.log("Email value");
+            if (currentSubscriber === null || currentSubscriber === "") {
+                // Error - Invalid Email
+                dispatch(openModal());
+                dispatch(changeText({ heading: "Invalid email!", body: "Please use a valid email address!" }))
+            } else {
+                const response = await axios.post(`${BACKEND_URL}/subscriber/add-subscriber`, { email: currentSubscriber });
+                // console.log(response);
+                // console.log(modalHeader);
+
+                if (response.status === 200) {
+                    // 'Thank you!';
+                    dispatch(openModal());
+                    dispatch(changeText({ heading: "Thank You!", body: "You have subscribed successfully!" }))
+                } else if (response.status === 208) {
+                    // Error - You Already Subscribed! 
+                    dispatch(openModal());
+                    dispatch(changeText({ heading: "You have already subscribed!", body: "Use another email address to subscribe." }))
+                } else if (response.status === 406) {
+                    // Error - Invalid Email
+                    dispatch(openModal());
+                    dispatch(changeText({ heading: "Invalid email!", body: "Please use a valid email address!" }))
+                }
+            }
+            setCurrentSubscriber('');
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
+
+    const inputChangeHandler = (e) => {
+        setCurrentSubscriber(e.target.value);
+    }
+
 
 
 
@@ -34,7 +79,8 @@ const Landing = () => {
                         fullWidth={true}
                         type='email'
                         name="email"
-                        // onChange={inputChangeHandler}
+                        onChange={inputChangeHandler}
+                        value={currentSubscriber}
                         margin='dense'
                         required
                         color='error'
@@ -47,7 +93,12 @@ const Landing = () => {
                 </FormControl>
                 <FormControl margin='dense' justify="center" align="center" fullWidth={true} >
                     <Box textAlign='center' my={3}>
-                        <Button variant="contained" color="error" type='submit' endIcon={<ArrowForward />} sx={{ textTransform: 'capitalize' }} > Notify Me </Button>
+                        <Button
+                            variant="contained" color="error" type='submit' endIcon={<ArrowForward />} sx={{ textTransform: 'capitalize' }}
+                            onClick={addSubScriber}
+                        >
+                            Notify Me
+                        </Button>
                     </Box>
                     {/* <Button variant="contained" color="error" type='submit' endIcon={<ArrowForward />}> Notify Me  </Button> */}
                 </FormControl>
@@ -66,6 +117,7 @@ const Landing = () => {
           /> */}
             </Grid>
         </Grid>
+        <CustomModal />
     </Container >;
 };
 

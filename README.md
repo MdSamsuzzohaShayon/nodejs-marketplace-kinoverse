@@ -69,9 +69,30 @@ route 53
  📌 Create a simple admin page in react <br/>
  📌 Setup domain and SSL certificate (AWS route 53, AWS load balancer, AWS certificate manager) <br/>
  📌 Convert Vanilla JavaScript to React.js (react-router, material-ui, redux toolkit) <br/>
- 📌 A single page. 
- 📌 Text and images explaining the contest (I will provide)
- 📌 form for the user to sign up and include a payment processor that charges them $50
- 📌 Login to and submit their screenplay via upload.
- 📌 terms of service built in
+
+ 📌 A single page. <br/>
+ 📌 Text and images explaining the contest (I will provide) <br/>
+ 📌 form for the user to sign up and include a payment processor that charges them $50 <br/>
+ 📌 Login to and submit their screenplay via upload. <br/>
+ 📌 terms of service built in <br/>
+
+ 
+ 📌 Clapperboard text -> Become an investor for the future of the film industry by donating spare change and rounding up your everyday purchases. Apply for financing for your film or startup business with Clapperboard. <br/>
+
+
+  “careers” - “Kinoverse will be offering a earn and learn…” changed to “Kinoverse is offering a earn and learn…”
+
+Then on the form we will offer a option for them to click. They have to click one, and they can click both. The options will say “I am interested in” and the choices are “Screenwriting” or “3D animation”
+[11:51 am, 04/02/2022] Jaden, Upwork: I forgot to tell you! I have some code I wanted to add to a subdomain only accessible by me, and people who have the link. It will be a employee payment portal. 
+I’ll send you that code if you can add it?
+
+
+Here is the download file for the code for employee payment portal.
+https://drive.google.com/drive/folders/1M4wkswl0zj05VfRZ-i9R8qtgS_1GdgG4
+
+
+Hey do you have any idea how we can have an email automatically sent out when someone signs up?
+
+
+
 

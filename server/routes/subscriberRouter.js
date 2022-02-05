@@ -16,10 +16,12 @@ router.post('/add-subscriber',
     body('email').isEmail(),
     addSubscriber);
 
-router.put('/add-to-waitlist',
+router.post('/add-to-waitlist',
     upload,
     check('email').isEmail(),
     check('name').notEmpty().isLength({ min: 2 }).withMessage("Your name should more than 2 charecter long."),
+    check('animation').notEmpty(),
+    check('screen').notEmpty(),
     addToWaitlist);
 
 

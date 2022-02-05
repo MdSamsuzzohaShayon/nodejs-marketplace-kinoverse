@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import useStyles from '../styles/Home.style.js';
+import React from 'react';
 import Landing from '../components/home/Landing.jsx';
 import Purpose from '../components/home/Purpose.jsx';
 

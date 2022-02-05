@@ -5,20 +5,23 @@ import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeModal } from '../../redux/slices/modalSlice';
+import useStyles from '../../styles/Home.style.js';
 
 const style = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
+    width: { xs: '80%', md: 450 },
+    minHeight: 200,
+    color: "white",
+    bgcolor: '#24242a',
     boxShadow: 24,
     p: 4,
 };
 
 function CustomModal() {
+    const classes = useStyles();
     const dispatch = useDispatch();
     // const [open, setOpen] = React.useState(false);
     const open = useSelector(state => state.modal.value.open);
@@ -33,37 +36,15 @@ function CustomModal() {
                 onClose={e => dispatch(closeModal())}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                BackdropProps={{ style: { backgroundColor: "rgba(255, 255, 255, 0.534)" } }}
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                    <Typography id="modal-modal-title" variant='h2' >
                         {text.heading}
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         {text.body}
                     </Typography>
-                    {/* <div className="modal-content">
-                        <span className="close" id="modal-close">×</span>
-                        <div className="modal-body">
-                            <h3>Thank you!</h3>
-                            <p></p>
-                            <p>Share with your friends and potential clients below!</p>
-                            <div className="share-wrapper">
-
-                                <a className="icon solid fa-envelope share-email" style="cursor: pointer;">
-                                    <span className="label">Email</span>
-                                </a>
-                                <a className="icon brands fa-facebook-f share-facebook" style="cursor: pointer;" target="_blank">
-                                    <span className="label">Facebook</span>
-                                </a>
-                                <a className="icon brands fa-twitter share-twitter" style="cursor: pointer;" target="_blank">
-                                    <span className="label">Twitter</span>
-                                </a>
-                                <a className="icon brands fa-linkedin-in share-linkedin" style="cursor: pointer;" target="_blank">
-                                    <span className="label">Linkedin</span>
-                                </a> 
-                            </div>
-                        </div>
-                    </div> */}
                 </Box>
             </Modal>
         </React.Fragment>

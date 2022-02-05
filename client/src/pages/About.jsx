@@ -23,17 +23,17 @@ const About = (props) => {
                 img_right={false} extraComponent={null} />
 
             <Spotlight
-                img_src={staticPage.digitalized.img_src}
-                title={staticPage.digitalized.title}
-                desc={staticPage.digitalized.desc}
+                img_src={staticPage.kvApp.img_src}
+                title={staticPage.kvApp.title}
+                desc={staticPage.kvApp.desc}
                 img_right={true} extraComponent={null} />
 
-            <Spotlight img_src={staticPage.digitalized.img_src} title={staticPage.digitalized.title} desc={staticPage.digitalized.desc} img_right={false} extraComponent={null} />
+            <Spotlight img_src={staticPage.kvFlow.img_src} title={staticPage.kvFlow.title} desc={staticPage.kvFlow.desc} img_right={false} extraComponent={null} />
 
             <Spotlight
-                img_src={staticPage.digitalized.img_src}
-                title={staticPage.digitalized.title}
-                desc={staticPage.digitalized.desc}
+                img_src={staticPage.clapperboard.img_src}
+                title={staticPage.clapperboard.title}
+                desc={staticPage.clapperboard.desc}
                 img_right={true}
                 extraComponent={<Button>Learn More</Button>} />
 
