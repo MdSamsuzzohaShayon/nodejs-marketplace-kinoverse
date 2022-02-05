@@ -3,18 +3,10 @@ import axios from 'axios';
 import { BACKEND_URL } from '../../config/keys';
 // import { useNavigate } from 'react-router-dom';
 
-const initialSubscribersList = [{}];
+const initialSubscribersList = [{}], initialWaitlist = [{}];
 
 
-// axios.interceptors.response.use(response => {
-//     return response;
-// }, error => {
-//     if (error.response.status === 401) {
-//         //place your reentry code
-//         console.log(error.response.status);
-//     }
-//     return error;
-// });
+
 
 export const getAllSubscribers = createAsyncThunk('subscriber/getAllSubscriber', async (subscribers, thunkAPI) => {
     // const navigate = useNavigate();
@@ -27,7 +19,7 @@ export const getAllSubscribers = createAsyncThunk('subscriber/getAllSubscriber',
         };
 
         const response = await axios.get(`${BACKEND_URL}/subscriber/all`, config);
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
             return response.data.subscriberList;
         }
@@ -42,9 +34,36 @@ export const getAllSubscribers = createAsyncThunk('subscriber/getAllSubscriber',
     }
 });
 
+
+
+export const getAllWaitlist = createAsyncThunk('subscriber/getAllWaitlist', async (waitlists, thunkAPI) => {
+    try {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        };
+
+        const response = await axios.get(`${BACKEND_URL}/subscriber/all-waitlist`, config);
+        // console.log(response);
+        if (response.status === 200) {
+            return response.data.waitlist;
+        }
+        return initialWaitlist;
+    } catch (error) {
+        // console.log(error.response.status);
+        if (error.response.status === 401) {
+            localStorage.clear();
+            // navigate('/login');
+        }
+        return initialWaitlist;
+    }
+});
+
 export const subscriberSlice = createSlice({
     name: "subscriber",
-    initialState: { subscriberList: initialSubscribersList, waitlist: [{}] },
+    initialState: { subscriberList: initialSubscribersList, waitlist: initialWaitlist },
     reducers: {
         login: (state, action) => {
             // state.value = action.payload;
@@ -55,21 +74,14 @@ export const subscriberSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(getAllSubscribers.fulfilled, (state, action) => {
-            // console.log(action.payload);
-            const filterSubscriber = [], filterWaitlist = [];
-            action.payload.filter(sub => {
-                if (sub.waitlist === false) {
-                    filterSubscriber.push(sub)
-                    return sub;
-                } else {
-                    filterWaitlist.push(sub);
-                    return sub;
-                }
-            });
-            state.subscriberList = filterSubscriber;
-            state.waitlist = filterWaitlist;
+            state.subscriberList = action.payload;
+            // console.log("First build");
+        });
 
-        })
+        builder.addCase(getAllWaitlist.fulfilled, (state, action) => {
+            state.waitlist = action.payload;
+            // console.log(action.payload);
+        });
     }
 });
 

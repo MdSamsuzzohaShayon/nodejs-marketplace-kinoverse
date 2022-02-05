@@ -39,6 +39,17 @@ const getAllSubscribers = async (req, res) => {
 
 }
 
+const getAllWaitlist = async (req, res) => {
+
+    try {
+        const waitlist = await Waitlist.findAll({});
+        res.status(200).json({ msg: "Get all Subscribers", waitlist });
+    } catch (error) {
+        throw error;
+    }
+
+}
+
 
 
 const addToWaitlist = async (req, res, next) => {
@@ -96,5 +107,6 @@ const addToWaitlist = async (req, res, next) => {
 module.exports = {
     addSubscriber,
     getAllSubscribers,
-    addToWaitlist
+    addToWaitlist,
+    getAllWaitlist
 }

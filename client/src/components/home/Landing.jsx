@@ -6,7 +6,7 @@ import { CustomOutlinedInput } from '../../styles/Theme.style.js';
 import { ArrowForward } from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
 import CustomModal from '../elements/CustomModal';
-import { openModal, changeText } from '../../redux/slices/modalSlice.js';
+import { changeText } from '../../redux/slices/modalSlice.js';
 import axios from 'axios';
 
 
@@ -22,7 +22,7 @@ const Landing = () => {
             // console.log("Email value");
             if (currentSubscriber === null || currentSubscriber === "") {
                 // Error - Invalid Email
-                dispatch(openModal());
+
                 dispatch(changeText({ heading: "Invalid email!", body: "Please use a valid email address!" }))
             } else {
                 const response = await axios.post(`${BACKEND_URL}/subscriber/add-subscriber`, { email: currentSubscriber });
@@ -31,15 +31,15 @@ const Landing = () => {
 
                 if (response.status === 200) {
                     // 'Thank you!';
-                    dispatch(openModal());
+
                     dispatch(changeText({ heading: "Thank You!", body: "You have subscribed successfully!" }))
                 } else if (response.status === 208) {
                     // Error - You Already Subscribed! 
-                    dispatch(openModal());
+
                     dispatch(changeText({ heading: "You have already subscribed!", body: "Use another email address to subscribe." }))
                 } else if (response.status === 406) {
                     // Error - Invalid Email
-                    dispatch(openModal());
+
                     dispatch(changeText({ heading: "Invalid email!", body: "Please use a valid email address!" }))
                 }
             }

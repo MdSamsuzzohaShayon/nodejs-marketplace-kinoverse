@@ -1,15 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { styled, useTheme } from '@mui/material/styles';
-import { Box, Drawer, CssBaseline, Toolbar, List, Divider, ListItemText, ListItem, ListItemButton, IconButton, ListItemIcon, Collapse, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
-import MuiAppBar from '@mui/material/AppBar';
-import { Person, ChevronRight, ChevronLeft, Menu, People, HourglassBottom } from "@mui/icons-material";
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { CustomToolbar } from '../styles/Theme.style.js';
+// IMPORT REACT REDUX 
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllUsers } from '../redux/slices/userSlice.js';
-import { getAllSubscribers } from '../redux/slices/subscriberSlice';
+import { getAllSubscribers, getAllWaitlist } from '../redux/slices/subscriberSlice';
+
+// REACT ROUTER 
+import { useNavigate } from 'react-router-dom';
+
+// IMPORT MATERIAL UI 
+import { styled, useTheme } from '@mui/material/styles';
+import { Box, Drawer, CssBaseline, List, Divider, ListItemText, ListItem, IconButton, ListItemIcon, Typography, Button } from '@mui/material';
+import MuiAppBar from '@mui/material/AppBar';
+import { Person, ChevronRight, ChevronLeft, Menu, People, HourglassBottom } from "@mui/icons-material";
+import { CustomToolbar } from '../styles/Theme.style.js';
+import useStyles from '../styles/Admin.style.js';
+
+
+
+// IMPORT CUSTOM ELEMENT AND FUNCTIONS 
+import Users from '../components/admin/Users';
+import Subscriber from '../components/admin/Subscriber';
+import Waitlist from '../components/admin/Waitlist';
+
+
+
 
 
 // MATERIAL UI STYLING START 
@@ -73,16 +87,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 
 function Admin() {
+    const classes = useStyles();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const USERS = "Users", SUB = "Subscribers", WAITLIST = "Waitlist";
-    const userList = useSelector(state => state.user.allUsers);
-    const subscriberList = useSelector(state => state.subscriber.subscriberList);
-    const waitlist = useSelector(state => state.subscriber.waitlist);
 
-
+    const currentUser = JSON.parse(localStorage.getItem('user'));
 
     const theme = useTheme();
-    const mounted = true;
 
 
 
@@ -101,6 +113,7 @@ function Admin() {
         // getAllUsers();
         dispatch(getAllUsers());
         dispatch(getAllSubscribers());
+        dispatch(getAllWaitlist());
 
     }, []);
 
@@ -115,87 +128,26 @@ function Admin() {
         // console.log(userList);
         switch (selectedItem) {
             case USERS:
-                return <Box>
-                    {userList.length > 0 && userList.map((user, i) => (<ListItemButton key={i} component="a" href="#simple-list">
-                        <ListItemText primary={user.name} />
-                    </ListItemButton>))}
-                </Box>
+                return <Users currentUser={currentUser} />
             case SUB:
-                return <Box >
-                    <Typography variant='h3'>Subscriber</Typography>
-                    <TableContainer component={Paper}>
-                        <Table aria-label="collapsible table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell />
-                                    <TableCell align="left">Serial</TableCell>
-                                    <TableCell align="left">ID</TableCell>
-                                    <TableCell align="left">Email&nbsp;(g)</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {subscriberList && subscriberList.length > 0 && subscriberList.map((subscriber, i) => (<TableRow key={i} sx={{ '& > *': { borderBottom: 'unset' } }}>
-                                    <TableCell>
-                                        <IconButton
-                                            aria-label="expand row"
-                                            size="small"
-                                            onClick={() => setOpen(!open)}
-                                        >
-                                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                        </IconButton>
-                                    </TableCell>
-                                    <TableCell align="left">{i + 1}</TableCell>
-                                    <TableCell align="left">{subscriber.id}</TableCell>
-                                    <TableCell align="left">{subscriber.email}</TableCell>
-                                </TableRow>))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Box>;
+                return <Subscriber />;
             case WAITLIST:
-                return <Box>
-                    <Typography variant='h3'>Waitlist</Typography>
-                    <TableContainer component={Paper}>
-                        <Table aria-label="collapsible table">
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell />
-                                    <TableCell align="left">Serial</TableCell>
-                                    <TableCell align="left">ID</TableCell>
-                                    <TableCell align="left">Name&nbsp;</TableCell>
-                                    <TableCell align="left">Email&nbsp;</TableCell>
-                                </TableRow>
-                            </TableHead>
-                            <TableBody>
-                                {waitlist && waitlist.length > 0 && waitlist.map((wait, i) => (<TableRow key={i} sx={{ '& > *': { borderBottom: 'unset' } }}>
-                                    <TableCell>
-                                        <IconButton
-                                            aria-label="expand row"
-                                            size="small"
-                                            onClick={() => setOpen(!open)}
-                                        >
-                                            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                        </IconButton>
-                                    </TableCell>
-                                    <TableCell align="left">{i + 1}</TableCell>
-                                    <TableCell align="left">{wait.id}</TableCell>
-                                    <TableCell align="left">{wait.name}</TableCell>
-                                    <TableCell align="left">{wait.email}</TableCell>
-                                </TableRow>))}
-                            </TableBody>
-                        </Table>
-                    </TableContainer>
-                </Box>
+                return <Waitlist />
         }
     }
 
 
+    const logoutHandler = (e) => {
+        localStorage.clear();
+        navigate('/login');
+    }
+
 
 
     return (
-        <Box sx={{ display: 'flex' }}>
+        <Box sx={{ display: 'flex' }} className={classes.admin_page}>
             <CssBaseline />
-            <AppBar position="fixed" open={open}>
+            <AppBar position="fixed" color='error' open={open}>
                 <CustomToolbar>
                     <IconButton
                         color="inherit"
@@ -214,9 +166,7 @@ function Admin() {
                     >
                         Kinoverse
                     </Typography>
-                    <IconButton size="large" aria-label="search" color="inherit">
-                        <Menu />
-                    </IconButton>
+                    <Button color="inherit" sx={{ textTransform: 'capitalize' }} onClick={logoutHandler} >Logout</Button>
                 </CustomToolbar>
             </AppBar>
             <Drawer

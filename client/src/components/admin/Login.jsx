@@ -5,14 +5,16 @@ import { CustomOutlinedInput } from '../../styles/Theme.style';
 import Loader from '../elements/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import CustomModal from '../elements/CustomModal';
-import { openModal, changeText } from '../../redux/slices/modalSlice';
+import { changeText } from '../../redux/slices/modalSlice';
 import { BACKEND_URL } from '../../config/keys.js';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import useStyles from '../../styles/Admin.style.js';
 
 
 
 const Login = (props) => {
+    const classes = useStyles();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -61,7 +63,7 @@ const Login = (props) => {
             //         heading: "Invalid credentials",
             //         body: "There are no user with this email",
             //     }));
-            //     dispatch(openModal());
+            //     
             //     setIsLoading(false);
             //     return;
             // }
@@ -87,7 +89,7 @@ const Login = (props) => {
                 heading: "Something went wrong ",
                 body: "Please try again with correct password and email",
             }));
-            dispatch(openModal());
+
             setIsLoading(false);
             setCurrentUser({ password: null, email: null });
             console.log(error);
@@ -108,21 +110,12 @@ const Login = (props) => {
                 heading: "Invalid Credentials",
                 body: "Please enter password and email both!",
             }));
-            dispatch(openModal());
+
         }
     }
 
 
-    // const handleModal = (e) => {
-    //     dispatch(changeText({
-    //         heading: "This is modal heading",
-    //         body: "This is modal body",
-    //     }));
-    //     dispatch(openModal());
-    // }
-
-    return <div className='Login'>
-        {/* <Button onClick={handleModal}>Open modal</Button> */}
+    return <Box className={classes.login_page}>
         <CustomModal />
         {isLoading ? <Loader /> : (
             <Box mt={5}>
@@ -130,9 +123,6 @@ const Login = (props) => {
                     <Box
                         onSubmit={loginHandler}
                         component="form"
-                        sx={{
-                            '& .MuiTextField-root': { m: 1, width: '25ch' },
-                        }}
                         noValidate
                         autoComplete="off"
                     >
@@ -174,34 +164,9 @@ const Login = (props) => {
                 </Container>
             </Box>
         )}
-    </div>;
+    </Box>;
 };
 
 export default Login;
-
-
-/*
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { login, logout } from '../../redux/slices/subscriberSlice.js';
-
-const Login = (props) => {
-    const dispatch = useDispatch();
-
-    return <div>
-        <button onClick={(e) => { dispatch(login({ name: "Updated name", email: "updated email" })) }}>Login</button>
-        <button onClick={(e) => { dispatch(logout()) }}>Logout</button>
-    </div>;
-};
-
-export default Login;
-*/
-
-/*
-
-    
-    
-*/
-
 
 

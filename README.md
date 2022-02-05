@@ -6,17 +6,13 @@ https://www.youtube.com/watch?v=ypWzL3PdKx0
 https://www.youtube.com/watch?v=yFgrSJGNj0E
 
 
-`pm2 start ts-node -- --type-check -r tsconfig-paths/register src/server.ts`
-`pm2 start ts-node -- -P tsconfig.server.json ./server/index.ts`
-`pm2 start ts-node -- -P tsconfig.json ./src/index.ts`
-__https://github.com/Unitech/pm2/issues/3503__
 
 http://kinoverse.net/api/v2/subscribers
 http://kinoverse.net/api/v1/users/get-all-users
 
 
 
-https://github.com/TypeStrong/ts-node/issues/566
+__https://github.com/Unitech/pm2/issues/3503__
 __https://github.com/TypeStrong/ts-node/issues/566__
 
 
@@ -36,13 +32,13 @@ __https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-passw
 
 
 ### S3 
-- Create a s3 bucket with blocking public access
-- Go to aws Identity and Access Management (IAM) -> create policy -> choose service s3 -> from read click on get object -> from write put object, delete object, etc
-- From resource -> add arn -> specify bucket name -> object name check any
-- next set a policy name and keep everything default
-- Go to users -> create a user from application -> access key -> check programetic access
-- In permission -> attach existing policy -> search name of the policy we made
-- Add user and copy access key id and access key secret
+ - Create a s3 bucket with blocking public access
+ - Go to aws Identity and Access Management (IAM) -> create policy -> choose service s3 -> from read click on get object -> from write put object, delete object, etc
+ - From resource -> add arn -> specify bucket name -> object name check any
+ - next set a policy name and keep everything default
+ - Go to users -> create a user from application -> access key -> check programetic access
+ - In permission -> attach existing policy -> search name of the policy we made
+ - Add user and copy access key id and access key secret
 
 
 
@@ -77,10 +73,9 @@ route 53
  📌 terms of service built in <br/>
 
  
+ 📌 Send email notification for subscriber and waitlist <br/>
  📌 Clapperboard text -> Become an investor for the future of the film industry by donating spare change and rounding up your everyday purchases. Apply for financing for your film or startup business with Clapperboard. <br/>
-
-
-  “careers” - “Kinoverse will be offering a earn and learn…” changed to “Kinoverse is offering a earn and learn…”
+ 📌 “careers” - “Kinoverse will be offering a earn and learn…” changed to “Kinoverse is offering a earn and learn…” <br/>
 
 Then on the form we will offer a option for them to click. They have to click one, and they can click both. The options will say “I am interested in” and the choices are “Screenwriting” or “3D animation”
 [11:51 am, 04/02/2022] Jaden, Upwork: I forgot to tell you! I have some code I wanted to add to a subdomain only accessible by me, and people who have the link. It will be a employee payment portal. 

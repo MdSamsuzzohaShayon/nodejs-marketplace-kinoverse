@@ -13,6 +13,7 @@ export const modalSlice = createSlice({
             state.value.open = false;
         },
         changeText: (state, action) => {
+            state.value.open = true;
             state.value.text = action.payload;
         }
     }
