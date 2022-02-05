@@ -48,13 +48,15 @@ __https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-passw
 - Create cname record from route 53 domain (if it is already created then just exit it) - > change cname and cname value according to aws ec2 certificate manager certificate - after validation we can see success message
 - from ec2 instance - client load balencer (left panel) -> 
 
-Create application load balancer
-set  name - check all mapping zome (e.g: us-est-2b) - security group as same as ec2 instance group -> 
-click on specific load balancer and edit http(80) -> remove default acction -> add redirect -> select https -> port number 443
-Create target group - register a target
+### Create application load balancer
+ - set  name - check all mapping zome (e.g: us-est-2b) - security group as same as ec2 instance group -> 
+ - click on specific load balancer and edit http(80) -> remove default acction -> add redirect -> select https -> port number 443
+ - Create target group - register a target
+ - route 53
 
-route 53
 
+### Google Nodemailer
+ - Go to __https://myaccount.google.com/lesssecureapps__
 
 ### Task List 📜📜
 

@@ -1,6 +1,7 @@
 const db = require('../models');
 const { validationResult } = require('express-validator');
 const { Subscriber, Waitlist } = db;
+const emailSend = require('../utils/emailSend.js');
 
 
 
@@ -21,6 +22,7 @@ const addSubscriber = async (req, res) => {
         const subscriber = await Subscriber.create({
             email: req.body.email
         });
+        emailSend("Kinoverse subscriber ", "You have got one new subscrier", `<div><h2>Subscriber email address: ${email}</h2></div>`);
         res.status(200).json({ msg: "Created new Subscriber", subscriber });
     }
 }
