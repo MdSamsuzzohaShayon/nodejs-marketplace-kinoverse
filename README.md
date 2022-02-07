@@ -93,3 +93,10 @@ Hey do you have any idea how we can have an email automatically sent out when so
 
 
 
+Hi there,
+I have updated few things,
+ 1. The whole website is now running on react.js 
+ 2. Changed all the text and images as you said
+ 3. This is new admin page https://kinoverse.net/admin (username and password remain same)
+ 4. In admin page user section you can add new user or delete user, There are three type of user/admin a) SUPER b) STUFF c) GENERAL , This well use for employee portal. Who is your employee or stuff you can assign or signup for them and they can access some specific feature.
+ 5. Now every time someone subscribe you will get the notification. (Note: it would be better if you create new gmail account from which you will send message to you personal mail, right now I am use my email address for sending email).
