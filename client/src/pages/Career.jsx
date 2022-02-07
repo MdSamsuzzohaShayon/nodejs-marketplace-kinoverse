@@ -145,7 +145,7 @@ const Career = (props) => {
                             required
                             color='error'
                             onChange={inputChangeHandler}
-                            placeholder='email'
+                            placeholder='Email'
                         />
                     </Box>
                     <Typography variant='h4' mt={5}>Upload Resume</Typography>
@@ -171,7 +171,7 @@ const Career = (props) => {
 
                     <FormControl margin='dense' justify="center" align="center" fullWidth={true} >
                         <Box textAlign='center' my={5}>
-                            <Button variant="contained" color="error" type='submit' endIcon={<ArrowForward />} sx={{ textTransform: 'capitalize' }} > Notify Me </Button>
+                            <Button variant="contained" color="error" type='submit' endIcon={<ArrowForward />} sx={{ textTransform: 'capitalize' }} > Apply </Button>
                         </Box>
                     </FormControl>
                 </Container>

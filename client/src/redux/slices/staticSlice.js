@@ -13,9 +13,9 @@ const earnLearnInitialState = {
 
 
 const digitalizedInitialState = {
-    title: "Earn and Learn",
+    title: "Digitalizing the filmmaking industry",
     img_src: "img/Digitalizing.jpg",
-    desc: "Kinoverse will be offering a earn and learn career path that will put you in the right direction to become a freelance screenwriter or 3D animator."
+    desc: "Kinoverse is Digitalizing the filmmaking industry by allowing anyone with the skills to work and operate as a filmmaker or content creator company. Our software is specially made to make every process of filmmaking and content creation easier from hiring, to project management and more."
 }
 
 const kvFlowInitialState = {

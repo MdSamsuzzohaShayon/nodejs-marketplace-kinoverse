@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Container, FormControl, Button } from '@mui/material';
 import { CustomOutlinedInput } from '../../styles/Theme.style';
 import Loader from '../elements/Loader';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import CustomModal from '../elements/CustomModal';
 import { changeText } from '../../redux/slices/modalSlice';
 import { BACKEND_URL } from '../../config/keys.js';

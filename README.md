@@ -1,34 +1,29 @@
-[nodejs sequelize](https://www.youtube.com/watch?v=0Yu-4_Vj4sU)
+### Task List 📜📜
 
-learn - express, sequalize, typescript
-database-1.cvxjhdyzqnyp.us-east-2.rds.amazonaws.com
-https://www.youtube.com/watch?v=ypWzL3PdKx0
-https://www.youtube.com/watch?v=yFgrSJGNj0E
+ 📌 Hosting node js and vanilla js on AWS ec2 instance  ✅  <br/>
+ 📌 Change backend code TypeScript to JavaScript to fix an issue of memory  ✅  <br/>
+ 📌 Get subscriber and waitlist form working  ✅  <br/>
+ 📌 AWS S3 setup to upload PDF file upload  ✅  <br/>
+ 📌 Create a simple admin page in react  ✅  <br/>
+ 📌 Setup domain and SSL certificate (AWS route 53, AWS load balancer, AWS certificate manager)  ✅  <br/>
+ 📌 Convert Vanilla JavaScript to React.js (react-router, material-ui, redux toolkit)  ✅  <br/>
+ 📌 Compress image <br/>
 
+ 📌 A single **page for screening contest** <br/>
+ 📌 Text and images explaining the contest (I will provide) <br/>
+ 📌 form for the user to sign up and include a payment processor that charges them $50 <br/>
+ 📌 Login to and submit their screenplay via upload. <br/>
+ 📌 terms of service built in <br/>
 
+ 📌 Send email notification for subscriber and waitlist  ✅ <br/>
+ 📌 On the form ption “Screenwriting” or “3D animation” options  ✅ <br/>
 
-http://kinoverse.net/api/v2/subscribers
-http://kinoverse.net/api/v1/users/get-all-users
+ 📌 **employee payment portal** ([existing code](https://drive.google.com/drive/folders/1M4wkswl0zj05VfRZ-i9R8qtgS_1GdgG4)).  <br/>
+ 📌 subdomain only accessible by me, and people who have the link. <br/>
 
-
-
-__https://github.com/Unitech/pm2/issues/3503__
-__https://github.com/TypeStrong/ts-node/issues/566__
-
-
-AWS EC2 & RDS CONNECTION ERROR
-__https://stackoverflow.com/questions/18551556/permission-denied-publickey-when-ssh-access-to-amazon-ec2-instance__
-__https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-fix-permission-denied-errors/__
-__https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html__
-__https://aws.amazon.com/premiumsupport/knowledge-center/duplicate-master-user-mysql/__
-__https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-password-rds/__
-
-
-
-
-
-#instance id =         i-0df85b675c6a1ba34
-# security group = sg-0bcda9f6dc73c20ef
+### Learn - express, sequalize, typescript, [nodejs sequelize](https://www.youtube.com/watch?v=0Yu-4_Vj4sU)
+ - __https://www.youtube.com/watch?v=ypWzL3PdKx0__
+ - __https://www.youtube.com/watch?v=yFgrSJGNj0E__
 
 
 ### S3 
@@ -39,9 +34,6 @@ __https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-passw
  - Go to users -> create a user from application -> access key -> check programetic access
  - In permission -> attach existing policy -> search name of the policy we made
  - Add user and copy access key id and access key secret
-
-
-
 
 ### AWS certificate manager 
 - Request a certificate -> enter domain (will get name and value for cname)- validate domain (by creating cname record we can validate)
@@ -58,45 +50,15 @@ __https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-passw
 ### Google Nodemailer
  - Go to __https://myaccount.google.com/lesssecureapps__
 
-### Task List 📜📜
 
- 📌 Hosting node js and vanilla js on AWS ec2 instance <br/>
- 📌 Change backend code TypeScript to JavaScript to fix an issue of memory <br/>
- 📌 Get subscriber and waitlist form working <br/>
- 📌 AWS S3 setup to upload PDF file upload <br/>
- 📌 Create a simple admin page in react <br/>
- 📌 Setup domain and SSL certificate (AWS route 53, AWS load balancer, AWS certificate manager) <br/>
- 📌 Convert Vanilla JavaScript to React.js (react-router, material-ui, redux toolkit) <br/>
-
- 📌 A single page. <br/>
- 📌 Text and images explaining the contest (I will provide) <br/>
- 📌 form for the user to sign up and include a payment processor that charges them $50 <br/>
- 📌 Login to and submit their screenplay via upload. <br/>
- 📌 terms of service built in <br/>
-
- 
- 📌 Send email notification for subscriber and waitlist <br/>
- 📌 Clapperboard text -> Become an investor for the future of the film industry by donating spare change and rounding up your everyday purchases. Apply for financing for your film or startup business with Clapperboard. <br/>
- 📌 “careers” - “Kinoverse will be offering a earn and learn…” changed to “Kinoverse is offering a earn and learn…” <br/>
-
-Then on the form we will offer a option for them to click. They have to click one, and they can click both. The options will say “I am interested in” and the choices are “Screenwriting” or “3D animation”
-[11:51 am, 04/02/2022] Jaden, Upwork: I forgot to tell you! I have some code I wanted to add to a subdomain only accessible by me, and people who have the link. It will be a employee payment portal. 
-I’ll send you that code if you can add it?
+#Errors 
+ - __https://github.com/Unitech/pm2/issues/3503__
+ - __https://github.com/TypeStrong/ts-node/issues/566__
 
 
-Here is the download file for the code for employee payment portal.
-https://drive.google.com/drive/folders/1M4wkswl0zj05VfRZ-i9R8qtgS_1GdgG4
-
-
-Hey do you have any idea how we can have an email automatically sent out when someone signs up?
-
-
-
-
-Hi there,
-I have updated few things,
- 1. The whole website is now running on react.js 
- 2. Changed all the text and images as you said
- 3. This is new admin page https://kinoverse.net/admin (username and password remain same)
- 4. In admin page user section you can add new user or delete user, There are three type of user/admin a) SUPER b) STUFF c) GENERAL , This well use for employee portal. Who is your employee or stuff you can assign or signup for them and they can access some specific feature.
- 5. Now every time someone subscribe you will get the notification. (Note: it would be better if you create new gmail account from which you will send message to you personal mail, right now I am use my email address for sending email).
+### AWS EC2 & RDS CONNECTION ERROR
+ - __https://stackoverflow.com/questions/18551556/permission-denied-publickey-when-ssh-access-to-amazon-ec2-instance__
+ - __https://aws.amazon.com/premiumsupport/knowledge-center/ec2-linux-fix-permission-denied-errors/__
+ - __https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html__
+ - __https://aws.amazon.com/premiumsupport/knowledge-center/duplicate-master-user-mysql/__
+ - __https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-password-rds/__
