@@ -1,11 +1,10 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useDispatch, useSelector } from 'react-redux';
-import { closeModal } from '../../redux/slices/modalSlice';
-import useStyles from '../../styles/Home.style.js';
+import { closeModal } from '../../redux/slices/elementsSlice.js'
+// import useStyles from '../../styles/Home.style.js';
 
 const style = {
     position: 'absolute',
@@ -21,11 +20,11 @@ const style = {
 };
 
 function CustomModal() {
-    const classes = useStyles();
+    // const classes = useStyles();
     const dispatch = useDispatch();
     // const [open, setOpen] = React.useState(false);
-    const open = useSelector(state => state.modal.value.open);
-    const text = useSelector(state => state.modal.value.text)
+    const open = useSelector(state => state.elements.modal.open);
+    const text = useSelector(state => state.elements.modal.text)
     // const handleOpen = () => setOpen(true);
     // const handleClose = () => setOpen(false);
 

@@ -29,10 +29,13 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 // rgb(213, 72, 87)
 const globalFontFamily = "Courier Prime, Source Sans Pro, Arial, Helvetica, sans-serif"
 // font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+const errorColor = "rgb(213, 72, 87)";
+
+
 const theme = createTheme({
   palette: {
     error: {
-      main: "rgb(213, 72, 87)",
+      main: errorColor,
     }
   },
   "*": {
@@ -64,7 +67,12 @@ const theme = createTheme({
       color: "rgba(255, 255, 255, 0.5)",
       fontSize: '1.05rem',
     }
-  }
+  },
+  // components: {
+  //   MuiButton: {
+  //     color: errorColor
+  //   }
+  // }
 });
 
 

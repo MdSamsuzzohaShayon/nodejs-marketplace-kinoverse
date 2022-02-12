@@ -78,17 +78,17 @@ const register = async (req, res, next) => {
 
 
 
-const register = async (req, res, next) => {
+const registerStuff = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(406).json({ error: errors.array()[0].msg });
     }
 
-    let role = GENERAL;
+    let role = STUFF;
 
     const { email, password, name, phone } = req.body;
     // WHETHER GENERAL OR STUFF USER CAN BE CREATED 
-    if (req.body.role === STUFF) role = STUFF;
+    // if (req.body.role === STUFF) role = STUFF;
     // console.log(req.userId, req.userRole);
 
     try {
@@ -110,8 +110,44 @@ const register = async (req, res, next) => {
 
             res.status(201).json({ user, token });
         } else {
-            res.status(405).json({ msg: "You do not have permission to create a new user, only super user can do that" });
+            res.status(405).json({ msg: "You do not have permission to create a stuff, only super user can do that" });
         }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: "Something went wrong", error });
+
+    }
+
+}
+
+
+
+
+const registerGeneral = async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(406).json({ error: errors.array()[0].msg });
+    }
+
+    let role = GENERAL;
+
+    const { email, password, name, phone } = req.body;
+    // WHETHER GENERAL OR STUFF USER CAN BE CREATED 
+    // if (req.body.role === STUFF) role = STUFF;
+    // console.log(req.userId, req.userRole);
+
+    try {
+        const userExist = await User.findOne({ where: { email } });
+        // console.log("Exist user - ", userExist);
+        if (userExist !== null) return res.status(208).json({ msg: "User already exists" });
+        // // console.log(password);
+        const hashedPassword = await bcrypt.hash(password, 10);
+        // console.log("hashed password - ", hashedPassword);
+        const user = await User.create({ email, password: hashedPassword, name, role, phone });
+        // console.log("User - ", user);
+        const token = jwt.sign({ email: user.email, id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        // console.log(token);
+        res.status(201).json({ user, token });
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: "Something went wrong", error });
@@ -156,4 +192,4 @@ const getAllUsers = async (req, res, next) => {
 
 
 
-module.exports = { login, register, getAllUsers, deleteUser };
+module.exports = { login, registerStuff, registerGeneral, getAllUsers, deleteUser };

@@ -7,7 +7,7 @@ const black = 'rgb(31, 31, 36)';
 
 const useStyles = makeStyles((theme) => ({
     image_fluid: {
-        width: "100%",
+        width: "70%",
         // height: "100%",
         // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         // border: 0,
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
             width: "35%",
         },
         [theme.breakpoints.down('sm')]: {
-            width: "70%"
+            width: "60%"
         }
     },
     input_field: {

@@ -1,15 +1,27 @@
-
+// REACT AND REACT ROUTER
 import React, { useState, useEffect } from 'react';
-import { Box, Container, FormControl, Button } from '@mui/material';
-import { CustomOutlinedInput } from '../../styles/Theme.style';
-import Loader from '../elements/Loader';
-import { useDispatch } from 'react-redux';
-import CustomModal from '../elements/CustomModal';
+import { useNavigate } from 'react-router-dom';
+
+// REDUX 
 import { changeText } from '../../redux/slices/modalSlice';
+import { useDispatch } from 'react-redux';
+
+// MATERIAL UI 
+import { Box, Container, FormControl, Button, Typography } from '@mui/material';
+import { CustomOutlinedInput } from '../../styles/Theme.style';
+import useStyles from '../../styles/Admin.style.js';
+
+// CUSTOM COMPONENT 
+import Loader from '../elements/Loader';
+import CustomModal from '../elements/CustomModal';
+
+// API 
 import { BACKEND_URL } from '../../config/keys.js';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import useStyles from '../../styles/Admin.style.js';
+
+
+
+
 
 
 
@@ -160,6 +172,10 @@ const Login = (props) => {
                         <FormControl margin='dense'>
                             <Button variant="contained" color="error" type='submit'>Login</Button>
                         </FormControl>
+                    </Box>
+
+                    <Box my={5}>
+                        <Typography variant='h6' component='a'>Don't you have account ? create one.</Typography>
                     </Box>
                 </Container>
             </Box>

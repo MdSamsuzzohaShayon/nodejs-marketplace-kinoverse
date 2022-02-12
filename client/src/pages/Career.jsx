@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { CustomOutlinedInput, CustomFileInput } from '../styles/Theme.style.js';
 import Spotlight from '../components/pages-common/Spotlight.jsx';
 import CustomModal from '../components/elements/CustomModal';
-import { changeText } from '../redux/slices/modalSlice.js';
+import { openModal } from '../redux/slices/elementsSlice.js'
 import axios from 'axios';
 import { BACKEND_URL } from '../config/keys.js';
 
@@ -32,13 +32,13 @@ const Career = (props) => {
             // ERROR 
             // PLEASE UPLOAD FILE WITH LESS THAN 2 MB SIZE 
 
-            dispatch(changeText({ heading: "File size it too large", body: "please upload a file with size of less than 2px" }));
+            dispatch(openModal({ heading: "File size it too large", body: "please upload a file with size of less than 2px" }));
 
         } else if (singleFile.type !== "application/pdf") {
             // ERROR 
             // ONLY PDF FILE ARE ALLOWED TO UPLOAD
 
-            dispatch(changeText({ heading: "Invalid file type", body: "Only PDF file are allowed to upload." }));
+            dispatch(openModal({ heading: "Invalid file type", body: "Only PDF file are allowed to upload." }));
         } else {
             // console.log("Upload success");
             formData.append('resume', singleFile);
@@ -65,19 +65,19 @@ const Career = (props) => {
         if (formData.get('name') === null || formData.get('name') === '') {
             // INVALID NAME 
 
-            dispatch(changeText({ heading: "Name empty", body: "You must enter a name!" }));
+            dispatch(openModal({ heading: "Name empty", body: "You must enter a name!" }));
         } else if (formData.get('email') === null || formData.get('email') === '') {
             // INVALID EMAIL 
 
-            dispatch(changeText({ heading: "Email empty", body: "You must enter an email address!" }));
+            dispatch(openModal({ heading: "Email empty", body: "You must enter an email address!" }));
         } else if (formData.get('resume') === null || formData.get('resume') === '') {
             // UPLOAD RESUME 
 
-            dispatch(changeText({ heading: "Upload resume", body: "You must upload youe resume!" }));
+            dispatch(openModal({ heading: "Upload resume", body: "You must upload youe resume!" }));
         } else if (formData.get('animation') === 'false' && formData.get('screen') === 'false') {
             // CHECK AT LEAST ONE 
 
-            dispatch(changeText({ heading: "Animation & Screen", body: "Either any one of them should be selected." }));
+            dispatch(openModal({ heading: "Animation & Screen", body: "Either any one of them should be selected." }));
         } else {
             const config = {
                 method: 'POST',
@@ -90,13 +90,13 @@ const Career = (props) => {
                     // console.log(response.status);
                     if (response.status === 406) {
 
-                        dispatch(changeText({ heading: "Missed something", body: "Reload and fill all the field" }));
+                        dispatch(openModal({ heading: "Missed something", body: "Reload and fill all the field" }));
                     } else if (response.status === 200 || response.status === 201) {
 
-                        dispatch(changeText({ heading: "Thank You!", body: "Successfully attached to waitlist!" }));
+                        dispatch(openModal({ heading: "Thank You!", body: "Successfully attached to waitlist!" }));
                     } else if (response.status = 208) {
 
-                        dispatch(changeText({ heading: "Already waitlisted!", body: "Use another email " }));
+                        dispatch(openModal({ heading: "Already waitlisted!", body: "Use another email " }));
                     }
                     for (let [key, val] of formData.entries()) {
                         // console.log(key, val);

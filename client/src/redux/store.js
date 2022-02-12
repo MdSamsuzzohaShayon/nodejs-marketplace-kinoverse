@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import subscriberReducer from './slices/subscriberSlice.js';
 import themeReducer from './slices/themeSlice.js';
 import userReducer from './slices/userSlice.js';
-import modalReducer from './slices/modalSlice.js';
+import elementsReducer from './slices/elementsSlice.js';
 import staticReducer from './slices/staticSlice.js';
 
 const store = configureStore({
@@ -10,7 +10,7 @@ const store = configureStore({
         subscriber: subscriberReducer,
         theme: themeReducer,
         user: userReducer,
-        modal: modalReducer,
+        elements: elementsReducer,
         static: staticReducer
     }
 });

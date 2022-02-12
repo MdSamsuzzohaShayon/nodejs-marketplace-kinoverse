@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BACKEND_URL } from '../../config/keys';
 // import { useNavigate } from 'react-router-dom';
 
+
 const initialSubscribersList = [{}], initialWaitlist = [{}];
 
 

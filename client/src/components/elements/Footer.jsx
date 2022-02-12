@@ -32,7 +32,7 @@ const Footer = (props) => {
 
     return <Box className={classes.footer_wrapper}>
         <Container maxWidth='xl'>
-            <Grid container spacing={2} >
+            <Grid container >
                 <Grid item xs={12} md={6}>
                     <Typography variant="h4" sx={{ fontFamily: font }}  >About Kinoverse</Typography>
                     <Box>

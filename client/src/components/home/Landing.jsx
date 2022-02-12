@@ -6,7 +6,7 @@ import { CustomOutlinedInput } from '../../styles/Theme.style.js';
 import { ArrowForward } from '@mui/icons-material';
 import { useSelector, useDispatch } from 'react-redux';
 import CustomModal from '../elements/CustomModal';
-import { changeText } from '../../redux/slices/modalSlice.js';
+import { openModal } from '../../redux/slices/elementsSlice.js'
 import axios from 'axios';
 
 
@@ -23,7 +23,7 @@ const Landing = () => {
             if (currentSubscriber === null || currentSubscriber === "") {
                 // Error - Invalid Email
 
-                dispatch(changeText({ heading: "Invalid email!", body: "Please use a valid email address!" }))
+                dispatch(openModal({ heading: "Invalid email!", body: "Please use a valid email address!" }))
             } else {
                 const response = await axios.post(`${BACKEND_URL}/subscriber/add-subscriber`, { email: currentSubscriber });
                 // console.log(response);
@@ -32,15 +32,15 @@ const Landing = () => {
                 if (response.status === 200) {
                     // 'Thank you!';
 
-                    dispatch(changeText({ heading: "Thank You!", body: "You have subscribed successfully!" }))
+                    dispatch(openModal({ heading: "Thank You!", body: "You have subscribed successfully!" }))
                 } else if (response.status === 208) {
                     // Error - You Already Subscribed! 
 
-                    dispatch(changeText({ heading: "You have already subscribed!", body: "Use another email address to subscribe." }))
+                    dispatch(openModal({ heading: "You have already subscribed!", body: "Use another email address to subscribe." }))
                 } else if (response.status === 406) {
                     // Error - Invalid Email
 
-                    dispatch(changeText({ heading: "Invalid email!", body: "Please use a valid email address!" }))
+                    dispatch(openModal({ heading: "Invalid email!", body: "Please use a valid email address!" }))
                 }
             }
             setCurrentSubscriber('');

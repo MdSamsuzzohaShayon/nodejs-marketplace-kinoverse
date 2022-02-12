@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "#303036",
         fontFamily: font,
         fontWeight: 100,
+        paddingTop: 20
     },
     footer_typography: {
         fontFamily: font,
