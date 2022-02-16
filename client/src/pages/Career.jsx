@@ -9,6 +9,7 @@ import CustomModal from '../components/elements/CustomModal';
 import { openModal } from '../redux/slices/elementsSlice.js'
 import axios from 'axios';
 import { BACKEND_URL } from '../config/keys.js';
+import { fileUploadHandler } from '../utils/helper.js';
 
 
 
@@ -25,25 +26,28 @@ const Career = (props) => {
     formData.append('animation', false);
 
 
-    const fileUploadHandler = (e) => {
-        const singleFile = e.target.files[0];
-        // console.log(singleFile.size, 1000 * 100 * 2);
-        if (singleFile.size > 1000 * 100 * 2) {
-            // ERROR 
-            // PLEASE UPLOAD FILE WITH LESS THAN 2 MB SIZE 
+    // const fileUploadHandler = (e) => {
+    //     const singleFile = e.target.files[0];
+    //     // console.log(singleFile.size, 1000 * 100 * 2);
+    //     if (singleFile.size > 1000 * 100 * 2) {
+    //         // ERROR 
+    //         // PLEASE UPLOAD FILE WITH LESS THAN 2 MB SIZE 
 
-            dispatch(openModal({ heading: "File size it too large", body: "please upload a file with size of less than 2px" }));
+    //         dispatch(openModal({ heading: "File size it too large", body: "please upload a file with size of less than 2px" }));
 
-        } else if (singleFile.type !== "application/pdf") {
-            // ERROR 
-            // ONLY PDF FILE ARE ALLOWED TO UPLOAD
+    //     } else if (singleFile.type !== "application/pdf") {
+    //         // ERROR 
+    //         // ONLY PDF FILE ARE ALLOWED TO UPLOAD
 
-            dispatch(openModal({ heading: "Invalid file type", body: "Only PDF file are allowed to upload." }));
-        } else {
-            // console.log("Upload success");
-            formData.append('resume', singleFile);
-        }
-    }
+    //         dispatch(openModal({ heading: "Invalid file type", body: "Only PDF file are allowed to upload." }));
+    //     } else {
+    //         // console.log("Upload success");
+    //         formData.append('resume', singleFile);
+    //     }
+    // }
+
+
+
 
 
     const inputChangeHandler = (e) => {
@@ -62,6 +66,7 @@ const Career = (props) => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+
         if (formData.get('name') === null || formData.get('name') === '') {
             // INVALID NAME 
 
@@ -151,7 +156,8 @@ const Career = (props) => {
                     <Typography variant='h4' mt={5}>Upload Resume</Typography>
                     <CustomFileInput
                         type="file"
-                        onChange={fileUploadHandler}
+                        // onChange={fileUploadHandler}
+                        onChange={e => fileUploadHandler(e, 1000 * 100 * 2, ['pdf'], dispatch, formData)}
                     />
                     <Typography variant='h4' mt={5}>I'm interested in</Typography>
                     <FormControl fullWidth={true} margin='dense' sx={{ flexDirection: { xs: 'column', md: "row" } }}>

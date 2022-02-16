@@ -19,19 +19,38 @@ const upload = multer({
             cb(null, { fieldName: file.fieldname });
         },
         key: function (req, file, cb) {
-            cb(null, Date.now().toString() + '.pdf')
+            // console.log("File - ", file); // { fieldname: 'resume', originalname: 'Keycode.pdf', encoding: '7bit', mimetype: 'application/pdf' }
+            const re = new RegExp('\.{3}$');
+            const fileExt = re.exec(file.originalname)[0];
+            let newFileName = null;
+            if (file.originalname.length > 10) {
+                newFileName = `${file.originalname.substring(0, 9)}-${new Date().getSeconds()}-${file.fieldname}.${fileExt}`;
+            } else {
+                newFileName = `${file.originalname}-${new Date().getSeconds()}-${file.fieldname}.${fileExt}`;
+            }
+            cb(null, newFileName);
         }
     }),
     fileFilter: (req, file, cb) => {
         // console.log(file.mimetype);
-        if (file.mimetype === "application/pdf") {
+        const fileTypeList = ['txt', 'pdf', 'fdx'];
+        let fileTypes = '';
+        fileTypeList.forEach((c, i) => i === 0 ? fileTypes += c : fileTypes += `|${c}`);
+        const re = new RegExp(`(${fileTypes})$`);
+        // file.mimetype === "application/pdf"
+        // console.log(file);
+        // console.log("re.test(file.mimetype) - ", re.test(file.mimetype));
+        // console.log("originalname - ", file.originalname);
+        if (re.test(file.originalname) === true) {
             cb(null, true);
         } else {
-            cb(new Error("not acceptable"), false);
+            cb(new Error("File not acceptable"), false);
         }
     }
-}).single('resume');
+});
 
 
 
-module.exports = upload;
+
+
+module.exports = { s3, upload };

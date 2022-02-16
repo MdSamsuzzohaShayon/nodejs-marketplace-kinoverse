@@ -7,12 +7,14 @@ import staticReducer from './slices/staticSlice.js';
 
 const store = configureStore({
     reducer: {
-        subscriber: subscriberReducer,
         theme: themeReducer,
+        subscriber: subscriberReducer,
         user: userReducer,
         elements: elementsReducer,
-        static: staticReducer
-    }
+        static: staticReducer,
+    },
+    // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat()
+    middleware: getDefaultMiddleware => getDefaultMiddleware({ serializableCheck: false, }),
 });
 
 console.log("Initial state: ", store.getState());

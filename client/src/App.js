@@ -17,6 +17,8 @@ import Footer from './components/elements/Footer';
 import RequireAuth from './components/admin/RequiredAuth';
 import NotLoggedIn from './components/admin/NotLoggedIn';
 import Login from './components/login/Login';
+import Privacy from './pages/Privacy';
+import Partner from './pages/Partner';
 
 // STYLES 
 import './App.css';
@@ -53,7 +55,14 @@ function App() {
           </React.Fragment>
         } />
 
-        <Route path="/contest" element={<React.Fragment> <Navbar /> <Contest /> </React.Fragment>} />
+
+        {/* THIS PAGE IS TEMPORARYLY OFF (LOTS OF WORK LEFT IN THIS PAGE) */}
+        {/* <Route path="/contest" element={<React.Fragment> <Navbar /> <Contest /> </React.Fragment>} /> */}
+
+
+        <Route path="/privacy" element={<React.Fragment> <Navbar /> <Privacy /> </React.Fragment>} />
+        <Route path="/partner" element={<React.Fragment> <Navbar /> <Partner /> </React.Fragment>} />
+
         <Route path="/login" element={
           <NotLoggedIn>
             <Navbar />

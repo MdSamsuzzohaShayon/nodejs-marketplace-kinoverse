@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem } from '@mui/material';
+import React, { useState } from 'react';
+import { AppBar, Box, Toolbar, Typography, Container } from '@mui/material';
 import { Link } from "react-router-dom";
 
-const pages = [{ name: 'home', link: "/home" }, { name: 'about', link: "/about" }, { name: 'career', link: "/career" }, { name: 'login', link: "/login" }];
 const Navbar = (Props) => {
     const [bottomScrolled, setBottomScrolled] = useState(false);
     // let bottomScrolled = false;

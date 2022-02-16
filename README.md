@@ -9,10 +9,11 @@
  📌 Convert Vanilla JavaScript to React.js (react-router, material-ui, redux toolkit)  ✅  <br/>
  📌 Compress image <br/>
 
- 📌 A single **page for screening contest** <br/>
+ 📌 A single **page for screening contest**  <br/>
  📌 Text and images explaining the contest (I will provide) <br/>
  📌 form for the user to sign up and include a payment processor that charges them $50 <br/>
  📌 Login to and submit their screenplay via upload. <br/>
+ 📌 Accpet .pdf .fdx and .txt file format <br/>
  📌 terms of service built in <br/>
 
  📌 Send email notification for subscriber and waitlist  ✅ <br/>
@@ -20,6 +21,24 @@
 
  📌 **employee payment portal** ([existing code](https://drive.google.com/drive/folders/1M4wkswl0zj05VfRZ-i9R8qtgS_1GdgG4)).  <br/>
  📌 subdomain only accessible by me, and people who have the link. <br/>
+ 📌  Privacy policy page<br/>
+ 📌  “partner” page. Form -> first name, last name, business email, business website, description (text box)
+
+
+
+
+
+[6:14 am, 13/02/2022] Jaden, Upwork: I had an idea. I was looking at the admin dashboard. It looks really good by the way. One small update I would like is a way to extract the list of users to a form if possible. Or we could set it up so it auto emails them as soon as they sign up. Then we can implement a second button for when we launch that auto sends their promo codes. 
+Let me know your thoughts on these ideas. No rush
+[0:51 pm, 13/02/2022] Shayon: Ok.. We can do that.
+We can send them auto email. But what that second button suppose to do? What kind of launch, little confuse
+[0:52 pm, 13/02/2022] Jaden, Upwork: Since right now the website is just people signing up to be notified when the app and web all are launched
+[0:52 pm, 13/02/2022] Jaden, Upwork: When it is actually done and launched we will send another email out to everyone who signed up
+
+
+
+
+Then we will have a form that requests the following: first name, last name, business email, business website, description (text box)<br/>
 
 ### Learn - express, sequalize, typescript, [nodejs sequelize](https://www.youtube.com/watch?v=0Yu-4_Vj4sU)
  - __https://www.youtube.com/watch?v=ypWzL3PdKx0__
@@ -45,6 +64,7 @@
  - click on specific load balancer and edit http(80) -> remove default acction -> add redirect -> select https -> port number 443
  - Create target group - register a target
  - route 53
+ 
 
 
 ### Google Nodemailer

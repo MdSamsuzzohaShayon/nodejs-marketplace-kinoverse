@@ -1,6 +1,6 @@
 const db = require('../models');
 const { validationResult } = require('express-validator');
-const { Subscriber, Waitlist } = db;
+const { Subscriber, Waitlist, Partner } = db;
 const emailSend = require('../utils/emailSend.js');
 
 
@@ -106,9 +106,37 @@ const addToWaitlist = async (req, res, next) => {
 
 
 
+
+
+
+
+
+const addPartner = async (req, res) => {
+
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(406).json({ error: errors.array() });
+    }
+    const { businessEmail } = req.body;
+    // console.log(req.body);
+
+    const emailExist = await Partner.findOne({ where: { businessEmail } });
+    if (emailExist) {
+        res.status(208).json({ msg: "already registered", emailExist });
+    } else {
+        const partner = await Partner.create(req.body);
+        res.status(201).json({ msg: "Created new Partner", partner });
+    }
+}
+
+
+
+
 module.exports = {
     addSubscriber,
     getAllSubscribers,
     addToWaitlist,
-    getAllWaitlist
+    getAllWaitlist,
+    addPartner
 }

@@ -71,7 +71,12 @@ export default User;
 
 module.exports = (sequelize, DataTypes) => {
 
-    class User extends Model { };
+    class User extends Model {
+        static associate(models) {
+            // User.hasOne(models.Contest, { foreignKey: "ContestId" });
+            User.hasOne(models.Contest);
+        }
+    };
 
 
     User.init({

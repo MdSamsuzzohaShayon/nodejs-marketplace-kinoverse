@@ -9,14 +9,13 @@ export const themeSlice = createSlice({
     initialState: { resizeScreen: false },
     reducers: {
         changeScreen: (state, action) => {
-            state.resizeScreen = action.payload
+            // console.log("Problem - ", action.payload);
+            state.resizeScreen = action.payload;
         }
     }
 });
 
-const { actions, reducer } = themeSlice;
-
-export const { changeScreen } = actions;
+export const { changeScreen } = themeSlice.actions;
 
 function measureResize() {
     const resizeObserver = new ResizeObserver(entities => {
@@ -39,4 +38,4 @@ function measureResize() {
 measureResize();
 
 
-export default reducer;
+export default themeSlice.reducer;

@@ -1,6 +1,6 @@
-const { addToWaitlist, getAllSubscribers, addSubscriber, getAllWaitlist } = require('../controllers/subscriber.controller.js');
+const { addToWaitlist, getAllSubscribers, addSubscriber, getAllWaitlist, addPartner } = require('../controllers/subscriber.controller.js');
 const { body, check } = require('express-validator');
-const upload = require('../config/s3-config');
+const { upload } = require('../config/s3-config');
 const ensureAuth = require('../middleware/auth.js');
 
 
@@ -18,12 +18,18 @@ router.post('/add-subscriber',
     addSubscriber);
 
 router.post('/add-to-waitlist',
-    upload,
+    upload.single('resume'),
     check('email').isEmail(),
     check('name').notEmpty().isLength({ min: 2 }).withMessage("Your name should more than 2 charecter long."),
     check('animation').notEmpty(),
     check('screen').notEmpty(),
     addToWaitlist);
+
+router.post('/add-partner',
+    check('firstName').notEmpty(),
+    check('businessEmail').isEmail(),
+    addPartner
+);
 
 
 

@@ -8,6 +8,7 @@ const express = require('express');
 const cors = require('cors');
 const subscriberRoutes = require('./routes/subscriberRouter.js');
 const userRoutes = require('./routes/userRouter');
+const contestRoutes = require('./routes/contestRouter');
 
 const db = require('./models');
 
@@ -29,16 +30,29 @@ app.get('/test', (req, res, next) => {
 })
 app.use('/api/subscriber', subscriberRoutes);
 app.use('/api/user', userRoutes);
+app.use('/api/contest', contestRoutes);
+
+
 
 
 const PORT = process.env.PORT || 4000;
-// IF THERE ARE NO TABLE THIS WILL CREATE 
-db.sequelize.sync().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server is running on ${PORT}`);
 
-    });
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`);
+
 });
+
+
+
+// IF THERE ARE NO TABLE THIS WILL CREATE 
+// db.sequelize.sync({ alter: true, force: true }).then(() => {
+//     app.listen(PORT, () => {
+//         console.log(`Server is running on ${PORT}`);
+
+//     });
+// });
+
+
 
 
 

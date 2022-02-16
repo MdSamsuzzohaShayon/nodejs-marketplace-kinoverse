@@ -23,10 +23,11 @@ const Login = (props) => {
     const [registedComponent, setRegisterComponent] = useState(false);
 
 
+    //  TOGGLE LOGIN AND REGISTER COMPONENT  
+    /*
     return <Box className={classes.login_page}>
         <Box mt={5}>
             <Container maxWidth="xl" >
-                {/* TOGGLE LOGIN AND REGISTER COMPONENT  */}
                 {registedComponent ? (<React.Fragment >
                     <Register title="Sign Up" />
                     <Box my={5}>
@@ -40,6 +41,19 @@ const Login = (props) => {
                         <Typography variant="a" onClick={e => setRegisterComponent(prevState => !prevState)} component="a" >create one.</Typography>
                     </Box>
                 </React.Fragment>)}
+
+            </Container>
+        </Box>
+    </Box>;
+    */
+
+
+    return <Box className={classes.login_page}>
+        <Box mt={5}>
+            <Container maxWidth="xl" >
+                <React.Fragment>
+                    <LoginElement title="Login" />
+                </React.Fragment>
 
             </Container>
         </Box>

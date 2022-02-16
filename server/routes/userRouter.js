@@ -5,7 +5,7 @@ const ensureAuth = require('../middleware/auth.js');
 
 
 router.post('/register-stuff',
-    ensureAuth,
+    // ensureAuth,
     check('name').notEmpty(),
     check('email').isEmail(),
     check('password').notEmpty().isLength({ min: 6 }),
@@ -27,6 +27,8 @@ router.post('/login',
 
 
 router.get('/all', ensureAuth, getAllUsers);
+
+
 
 
 

@@ -6,7 +6,7 @@ function RequireAuth({ children }) {
   const token = localStorage.getItem('token');
   if (!token) {
     // CONTINUE WITH LOGIN PAGE 
-    return <Navigate to="/admin" state={{ from: location }} replace />;
+    return <Navigate to="/login" state={{ from: location }} replace />;
   } else {
     // REDIRECT TO ANOTHER PAGE 
     const role = JSON.parse(localStorage.getItem('user')).role;

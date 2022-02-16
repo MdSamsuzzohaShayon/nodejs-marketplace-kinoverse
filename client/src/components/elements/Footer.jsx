@@ -1,33 +1,20 @@
 import React, { useState } from 'react';
 import useStyles from '../../styles/Elements.style.js';
 import { Box, Container, Grid, Typography, List, ListItem } from '@mui/material';
-import { Facebook, Drafts, Twitter, LinkedIn } from "@mui/icons-material";
 import LinkMUI from '@mui/material/Link';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 const Footer = (props) => {
     const classes = useStyles();
     const font = "Averta, Avenir, Helvetica Neue, Calibri, Helvetica, Roboto, sans-serif";
 
-    const initialShareIcon = [
-        {
-            url: "https://www.facebook.com/kinoverseteam",
-            component: <Facebook color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></Facebook>
-        },
-        {
-            url: "https://twitter.com/kinoverseteam",
-            component: <Twitter color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></Twitter>
-        },
-        {
-            url: "mailto:info@kinoverse.net",
-            component: <Drafts color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></Drafts>
-        },
-        {
-            url: "https://www.linkedin.com/company/kinoverse",
-            component: <LinkedIn color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></LinkedIn>
-        }
-    ]
-    const [shareIcons, setShareIcons] = useState(initialShareIcon);
+    const navItems = useSelector(state => state.static.footerNavItems);
+    const shareIcons = useSelector(state => state.static.footerShareIcon);
+
+
+
 
 
     return <Box className={classes.footer_wrapper}>
@@ -36,17 +23,7 @@ const Footer = (props) => {
                 <Grid item xs={12} md={6}>
                     <Typography variant="h4" sx={{ fontFamily: font }}  >About Kinoverse</Typography>
                     <Box>
-                        <List>
-                            <ListItem >
-                                <Link to={'/'} className={classes.footer_link} >Home</Link>
-                            </ListItem>
-                            <ListItem >
-                                <Link to={'/about'} className={classes.footer_link} >About Us</Link>
-                            </ListItem>
-                            <ListItem >
-                                <Link to={'/career'} className={classes.footer_link} >Careers</Link>
-                            </ListItem>
-                        </List>
+                        <List>{navItems.map((ni, i) => (<ListItem key={i}  > <Link to={ni.to} className={classes.footer_link} > {ni.text}</Link> </ListItem>))}</List>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6}>
