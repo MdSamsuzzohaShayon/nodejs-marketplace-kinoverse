@@ -52,6 +52,17 @@ const getAllWaitlist = async (req, res) => {
 
 }
 
+const getAllPartner = async (req, res) => {
+
+    try {
+        const partner = await Partner.findAll({});
+        res.status(200).json({ msg: "Get all partner", partner });
+    } catch (error) {
+        throw error;
+    }
+
+}
+
 
 
 const addToWaitlist = async (req, res, next) => {
@@ -138,5 +149,6 @@ module.exports = {
     getAllSubscribers,
     addToWaitlist,
     getAllWaitlist,
+    getAllPartner,
     addPartner
 }

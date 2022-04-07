@@ -1,4 +1,4 @@
-const { addToWaitlist, getAllSubscribers, addSubscriber, getAllWaitlist, addPartner } = require('../controllers/subscriber.controller.js');
+const { addToWaitlist, getAllSubscribers, addSubscriber, getAllWaitlist, getAllPartner, addPartner } = require('../controllers/subscriber.controller.js');
 const { body, check } = require('express-validator');
 const { upload } = require('../config/s3-config');
 const ensureAuth = require('../middleware/auth.js');
@@ -11,6 +11,7 @@ const router = require('express').Router();
 
 router.get('/all', ensureAuth, getAllSubscribers);
 router.get('/all-waitlist', ensureAuth, getAllWaitlist);
+router.get('/all-partner', ensureAuth, getAllPartner);
 
 
 router.post('/add-subscriber',

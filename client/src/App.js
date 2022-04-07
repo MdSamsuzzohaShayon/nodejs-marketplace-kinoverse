@@ -26,7 +26,11 @@ import { Box } from '@mui/material';
 import useStyles from './styles/App.style.js';
 
 function App() {
+  // console.log("App.js - ", process.env.REACT_APP_KEY);
+
   const classes = useStyles();
+
+
   return (
     <Box className={classes.app} >
       <Routes >
@@ -57,7 +61,7 @@ function App() {
 
 
         {/* THIS PAGE IS TEMPORARYLY OFF (LOTS OF WORK LEFT IN THIS PAGE) */}
-        {/* <Route path="/contest" element={<React.Fragment> <Navbar /> <Contest /> </React.Fragment>} /> */}
+        <Route path="/contest" element={<React.Fragment> <Navbar /> <Contest /> </React.Fragment>} />
 
 
         <Route path="/privacy" element={<React.Fragment> <Navbar /> <Privacy /> </React.Fragment>} />

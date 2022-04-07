@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getAllUsers } from '../redux/slices/userSlice.js';
-import { getAllSubscribers, getAllWaitlist } from '../redux/slices/subscriberSlice';
+import { getAllSubscribers, getAllWaitlist, getAllPartner } from '../redux/slices/subscriberSlice';
 
 // REACT ROUTER 
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import { Box, Drawer, CssBaseline, List, Divider, ListItemText, ListItem, IconButton, ListItemIcon, Typography, Button } from '@mui/material';
 import MuiAppBar from '@mui/material/AppBar';
-import { Person, ChevronRight, ChevronLeft, Menu, People, HourglassBottom } from "@mui/icons-material";
+import { Person, ChevronRight, ChevronLeft, Menu, People, HourglassBottom, GroupWork } from "@mui/icons-material";
 import { CustomToolbar } from '../styles/Theme.style.js';
 import useStyles from '../styles/Admin.style.js';
 
@@ -21,6 +21,7 @@ import useStyles from '../styles/Admin.style.js';
 import Users from '../components/admin/Users';
 import Subscriber from '../components/admin/Subscriber';
 import Waitlist from '../components/admin/Waitlist';
+import Partners from '../components/admin/Partners';
 
 
 
@@ -90,7 +91,7 @@ function Admin() {
     const classes = useStyles();
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const USERS = "Users", SUB = "Subscribers", WAITLIST = "Waitlist";
+    const USERS = "Users", SUB = "Subscribers", WAITLIST = "Waitlist", PARTNERS = "Partners";
 
     const currentUser = JSON.parse(localStorage.getItem('user'));
 
@@ -114,13 +115,20 @@ function Admin() {
         dispatch(getAllUsers());
         dispatch(getAllSubscribers());
         dispatch(getAllWaitlist());
+        dispatch(getAllPartner());
 
     }, []);
 
 
 
 
-    const initialMenuItemList = [{ id: 1, title: USERS, icon: <Person /> }, { id: 2, title: SUB, icon: <People /> }, { id: 3, title: WAITLIST, icon: <HourglassBottom /> }];
+    const initialMenuItemList = [
+        { id: 1, title: USERS, icon: <Person /> },
+        { id: 2, title: SUB, icon: <People /> },
+        { id: 3, title: WAITLIST, icon: <HourglassBottom /> },
+        { id: 4, title: PARTNERS, icon: <GroupWork /> }
+    ];
+
     const [menuItemList, setMenuItemList] = useState(initialMenuItemList);
     const [selectedItem, setSelectedItem] = useState(USERS);
 
@@ -132,7 +140,9 @@ function Admin() {
             case SUB:
                 return <Subscriber />;
             case WAITLIST:
-                return <Waitlist />
+                return <Waitlist />;
+            case PARTNERS:
+                return <Partners />
         }
     }
 

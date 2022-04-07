@@ -3,9 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+// REDUX 
 import { HashRouter, BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import store from './redux/store.js';
+
+
+// MATERIAL UI 
 import { ThemeProvider } from '@mui/material';
 import { theme } from './styles/Theme.style.js';
 

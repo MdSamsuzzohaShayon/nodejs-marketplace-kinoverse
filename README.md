@@ -7,7 +7,7 @@
  📌 Create a simple admin page in react  ✅  <br/>
  📌 Setup domain and SSL certificate (AWS route 53, AWS load balancer, AWS certificate manager)  ✅  <br/>
  📌 Convert Vanilla JavaScript to React.js (react-router, material-ui, redux toolkit)  ✅  <br/>
- 📌 Compress image <br/>
+ 📌 Compress image ✅ <br/>
 
  📌 A single **page for screening contest**  <br/>
  📌 Text and images explaining the contest (I will provide) <br/>
@@ -21,28 +21,28 @@
 
  📌 **employee payment portal** ([existing code](https://drive.google.com/drive/folders/1M4wkswl0zj05VfRZ-i9R8qtgS_1GdgG4)).  <br/>
  📌 subdomain only accessible by me, and people who have the link. <br/>
- 📌  Privacy policy page<br/>
- 📌  “partner” page. Form -> first name, last name, business email, business website, description (text box)
+ 📌 **Privacy policy page** ✅ <br/>
+ 📌 **“partner”** page. Form -> first name, last name, business email, business website, description (text box) ✅ <br/>
+ 📌 When it is actually done and launched we will send another email out to everyone who signed up auto sends their promo codes. <br/>
+ 📌 List all partner in dashboard. <br/>
+ 📌 View all files and download all files in dashboard from s3. (resume, screen contest) <br/>
+ 📌 Stripe setup <br/>
 
 
 
-
-
-[6:14 am, 13/02/2022] Jaden, Upwork: I had an idea. I was looking at the admin dashboard. It looks really good by the way. One small update I would like is a way to extract the list of users to a form if possible. Or we could set it up so it auto emails them as soon as they sign up. Then we can implement a second button for when we launch that auto sends their promo codes. 
-Let me know your thoughts on these ideas. No rush
-[0:51 pm, 13/02/2022] Shayon: Ok.. We can do that.
-We can send them auto email. But what that second button suppose to do? What kind of launch, little confuse
-[0:52 pm, 13/02/2022] Jaden, Upwork: Since right now the website is just people signing up to be notified when the app and web all are launched
-[0:52 pm, 13/02/2022] Jaden, Upwork: When it is actually done and launched we will send another email out to everyone who signed up
-
-
-
-
-Then we will have a form that requests the following: first name, last name, business email, business website, description (text box)<br/>
 
 ### Learn - express, sequalize, typescript, [nodejs sequelize](https://www.youtube.com/watch?v=0Yu-4_Vj4sU)
  - __https://www.youtube.com/watch?v=ypWzL3PdKx0__
  - __https://www.youtube.com/watch?v=yFgrSJGNj0E__
+
+
+### Stripe - [There are three ways to accept payments on Stripe ](https://stripe.com/docs/payments/payment-intents/migration/charges)
+ - Method-1: Create a payment intent and confirm payment from front-end (Has more functionlity)
+ - Method-2: Create a checkout session and and checkout one time payment in stripe hosted payment page
+ - The PaymentIntent contains a client secret, a key that’s unique to the individual PaymentIntent. On the client side of your application, Stripe.js uses the client secret as a parameter when invoking functions (such as stripe.confirmCardPayment or stripe.handleCardAction) to complete the payment. [Example](https://stripe.com/docs/payments/payment-intents#passing-to-client)
+ - This reference documents every object and method available in Stripe’s [browser-side Vanilla JavaScript library](https://stripe.com/docs/js)
+ - You can use Stripe.js’ APIs to tokenize customer information, collect sensitive payment details using customizable Stripe Elements, and accept payments with browser payment APIs like Apple Pay and the Payment Request API.
+ - [React components](https://stripe.com/docs/stripe-js/react) for Stripe.js and Stripe Elements
 
 
 ### S3 

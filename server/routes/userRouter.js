@@ -1,16 +1,21 @@
 const router = require('express').Router();
 const { check } = require('express-validator');
-const { login, registerStuff, getAllUsers, deleteUser, registerGeneral } = require('../controllers/user.controller.js');
+const { login, registerStuff, getAllUsers, deleteUser, registerGeneral, registerPaymentIntent } = require('../controllers/user.controller.js');
 const ensureAuth = require('../middleware/auth.js');
 
 
 router.post('/register-stuff',
-    // ensureAuth,
+    ensureAuth,
     check('name').notEmpty(),
     check('email').isEmail(),
     check('password').notEmpty().isLength({ min: 6 }),
     registerStuff);
 
+
+
+// USED STRIPE 
+router.get('/register-payment-intent',
+    registerPaymentIntent);
 
 router.post('/register-general',
     check('name').notEmpty(),

@@ -4,7 +4,7 @@ import { BACKEND_URL } from '../../config/keys';
 // import { useNavigate } from 'react-router-dom';
 
 
-const initialSubscribersList = [{}], initialWaitlist = [{}];
+const initialSubscribersList = [{}], initialWaitlist = [{}], initialPartners = [{}];
 
 
 
@@ -62,9 +62,39 @@ export const getAllWaitlist = createAsyncThunk('subscriber/getAllWaitlist', asyn
     }
 });
 
+
+
+export const getAllPartner = createAsyncThunk('subscriber/getAllPartner', async (partner, thunkAPI) => {
+    try {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        };
+
+        const response = await axios.get(`${BACKEND_URL}/subscriber/all-partner`, config);
+        // console.log(response);
+        if (response.status === 200) {
+            return response.data.partner;
+        }
+        return initialPartners;
+    } catch (error) {
+        // console.log(error.response.status);
+        if (error.response.status === 401) {
+            localStorage.clear();
+            // navigate('/login');
+        }
+        return initialPartners;
+    }
+});
+
+
+
+
 export const subscriberSlice = createSlice({
     name: "subscriber",
-    initialState: { subscriberList: initialSubscribersList, waitlist: initialWaitlist },
+    initialState: { subscriberList: initialSubscribersList, waitlist: initialWaitlist, partners: initialPartners },
     reducers: {
         login: (state, action) => {
             // state.value = action.payload;
@@ -82,6 +112,11 @@ export const subscriberSlice = createSlice({
         builder.addCase(getAllWaitlist.fulfilled, (state, action) => {
             state.waitlist = action.payload;
             // console.log(action.payload);
+        });
+
+
+        builder.addCase(getAllPartner.fulfilled, (state, action) => {
+            state.partners = action.payload;
         });
     }
 });

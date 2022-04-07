@@ -111,7 +111,8 @@ const theme = createTheme({
 const CustomOutlinedInput = styled(OutlinedInput)(({ theme }) => ({
   color: "white",
   border: "solid 2px rgba(110, 110, 122, 0.5)",
-  height: "48px"
+  height: "48px",
+  textTransform: 'capitalize'
 }));
 
 

@@ -67,7 +67,7 @@ const Partner = (props) => {
                     </Box>
                     <Box sx={{ display: 'flex', alignItems: 'space-between', mt: 2, flexDirection: { xs: 'column', md: 'row' } }}>
                         <CustomOutlinedInput sx={{ marginRight: { xs: 0, md: 1 } }} fullWidth type='email' name='businessEmail' onChange={inputChangeHandler} required color='error' placeholder='Business Email' />
-                        <CustomOutlinedInput sx={{ marginLeft: { xs: 0, md: 1 }, mt: { xs: 2, md: 0 } }} fullWidth type='text' name='businessWebsite' required color='error' onChange={inputChangeHandler} placeholder='Bueiness Website' />
+                        <CustomOutlinedInput sx={{ marginLeft: { xs: 0, md: 1 }, mt: { xs: 2, md: 0 } }} fullWidth type='text' name='businessWebsite' required color='error' onChange={inputChangeHandler} placeholder='Business Website' />
                     </Box>
 
                     <TextareaAutosize className={classes.partner_textarea} pt={2} onChange={inputChangeHandler} aria-label="empty textarea" name="description" placeholder="Description" />

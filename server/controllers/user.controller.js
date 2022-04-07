@@ -1,5 +1,8 @@
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
+// Set your secret key. Remember to switch to your live secret key in production.
+// See your keys here: https://dashboard.stripe.com/apikeys
+const stripe = require('stripe')(process.env.STRIPE_SECRET_DEV_KEY);
 const jwt = require('jsonwebtoken');
 // bcryptjs 
 const db = require('../models');
@@ -123,6 +126,24 @@ const registerStuff = async (req, res, next) => {
 
 
 
+
+const registerPaymentIntent = async (req, res, next) => {
+    const oneDoller = 100; // 100 cent
+
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: oneDoller * 50,
+        currency: 'usd',
+        payment_method_types: ['card'],
+    });
+
+
+    console.log(paymentIntent); // IF CARD PAYMENT IS CONFIRMED REGISTER THE USER
+    res.status(200).json({ clientSecret: paymentIntent.client_secret }); // https://stripe.com/docs/js/payment_intents/confirm_card_payment
+}
+
+
+
+// REGISTER WITH 50$ 
 const registerGeneral = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -137,6 +158,11 @@ const registerGeneral = async (req, res, next) => {
     // console.log(req.userId, req.userRole);
 
     try {
+
+
+
+
+        /*
         const userExist = await User.findOne({ where: { email } });
         // console.log("Exist user - ", userExist);
         if (userExist !== null) return res.status(208).json({ msg: "User already exists" });
@@ -147,7 +173,9 @@ const registerGeneral = async (req, res, next) => {
         // console.log("User - ", user);
         const token = jwt.sign({ email: user.email, id: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: "1h" });
         // console.log(token);
-        res.status(201).json({ user, token });
+        res.status(201).json({ user, token, clientSecret: paymentIntent.client_secret }); // https://stripe.com/docs/js/payment_intents/confirm_card_payment
+        */
+
     } catch (error) {
         console.log(error);
         res.status(500).json({ msg: "Something went wrong", error });
@@ -192,4 +220,4 @@ const getAllUsers = async (req, res, next) => {
 
 
 
-module.exports = { login, registerStuff, registerGeneral, getAllUsers, deleteUser };
+module.exports = { login, registerStuff, registerGeneral, getAllUsers, deleteUser, registerPaymentIntent };
