@@ -28,6 +28,16 @@
 📌 View all files and download all files in dashboard from s3. (resume, screen contest) <br/>
 📌 Stripe setup <br/>
 
+### New modification
+
+- fix the type on the “partner” page where it says “business website” ✅
+- create a section on the backend for the partner page information
+- change the career page text. Change the main text that says earn and learn to “General application” “Kinoverse is always looking for talent in the industry. Fill out the form below to apply” ✅
+- Then for now, remove the part that says “I’m interested in” and has the check boxes. ✅
+- on the footer there is a typo it should say “Use the signup form to start your account and be notified of our launch. Please provide a valid email address to receive a $10 credit coupon towards your first job’s fees on the marketplace” ✅
+- change the Facebook social media link to Facebook.com/teamkinoverse ✅
+- on the home page make the phone screen flip through mulitple images of the UI
+
 ### Learn - express, sequalize, typescript, [nodejs sequelize](https://www.youtube.com/watch?v=0Yu-4_Vj4sU)
 
 - **https://www.youtube.com/watch?v=ypWzL3PdKx0**
@@ -81,3 +91,11 @@
 - **https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html**
 - **https://aws.amazon.com/premiumsupport/knowledge-center/duplicate-master-user-mysql/**
 - **https://aws.amazon.com/premiumsupport/knowledge-center/reset-master-user-password-rds/**
+
+- Create dot env dot prod
+- Register super suer
+- Refactor database
+- npm start
+- Upload file for **Add to waitlist**, **add screenplay[ensureAuth]**
+- Change some and update
+-

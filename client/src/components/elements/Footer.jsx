@@ -30,7 +30,7 @@ const Footer = (props) => {
                     <Box>
                         <Typography variant='h4' sx={{ fontFamily: font }} >Ready to signup?</Typography>
                         <Typography my={3} sx={{ fontSize: '0.8em', fontFamily: font, fontWeight: 200 }}>
-                            Use the signup form to start your account and be nitified out launch. Please provide a valid email address to receive a $10 credit coupon towards your first jobs fee's on the marketplace.
+                        Use the signup form to start your account and be notified of our launch. Please provide a valid email address to receive a $10 credit coupon towards your first job’s fees on the marketplace.
                         </Typography>
                     </Box>
                     <Box>

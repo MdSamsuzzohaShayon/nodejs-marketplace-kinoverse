@@ -2,6 +2,8 @@ const db = require('../models');
 const { validationResult } = require('express-validator');
 const { Subscriber, Waitlist, Partner } = db;
 const emailSend = require('../utils/emailSend.js');
+const path = require('path');
+const { unlink } = require('fs/promises');
 
 
 
@@ -72,8 +74,10 @@ const addToWaitlist = async (req, res, next) => {
     }
 
     if (!req.file) {
-        return res.status(406).json({ msg: "No file attached" })
+        return res.status(406).json({ msg: "No file attached" });
     }
+
+    // res.json({ uploadFile: req.file.filename });
 
 
     // FIND AND UPDATE FROM SUBSCRIBER 
@@ -81,7 +85,7 @@ const addToWaitlist = async (req, res, next) => {
     const screen = String(req.body.screen).toLocaleLowerCase() === "true";
     const animation = String(req.body.animation).toLocaleLowerCase() === "true";
 
-    console.log(screen, animation);
+    // console.log({screen, animation});
 
 
     const waitlistExist = await Waitlist.findOne({ where: { email } });
@@ -90,28 +94,24 @@ const addToWaitlist = async (req, res, next) => {
         const newWaitedlist = await Waitlist.create({
             name,
             email,
-            resume: req.file.key,
+            resume: req.file.filename,
             screen,
             animation
         });
         res.status(201).json({ msg: "added to waitlist - create", waitlist: newWaitedlist });
     } else {
-        // console.log(Waitlist);
-        // console.log(req.file);
-        res.status(208).json({ msg: "You are already in wait list" });
-        // if (Waitlist.dataValues.waitlist === true) {
-        // } else {
-        //     const updatedSubscriber = Subscriber.update({
-        //         name,
-        //         resume: req.file.key,
-        //         waitlist: true
-        //     }, {
-        //         where: {
-        //             email: subscriberExist.dataValues.email
-        //         }
-        //     });
-        //     res.status(200).json({ msg: "added to waitlist - update", subscriber: updatedSubscriber });
-        // }
+        // console.log({ waitlistExist: waitlistExist.dataValues, id: waitlistExist.dataValues.id, resume: waitlistExist.dataValues.resume });
+        try {
+            const deleteImageFromServer = await unlink(path.resolve(__dirname, "../uploads", waitlistExist.dataValues.resume));
+            const result = await Waitlist.update(
+                { resume: req.file.filename },
+                { where: { id: waitlistExist.dataValues.id } }
+            );
+            res.status(208).json({ msg: "You are already in waitlist" });
+        } catch (error) {
+            console.log(error);
+        }
+
     }
 }
 

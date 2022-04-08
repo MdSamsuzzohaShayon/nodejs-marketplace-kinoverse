@@ -7,9 +7,9 @@ import { Facebook, Drafts, Twitter, LinkedIn } from "@mui/icons-material";
 
 
 const earnLearnInitialState = {
-    title: "Earn and Learn",
+    title: "General Application",
     img_src: "img/career.png",
-    desc: "Kinoverse is offering a earn and learn career path that will put you in the right direction to become a freelance screenwriter or 3D animator."
+    desc: "Kinoverse is always looking for talent in the industry. Fill out the form below to apply."
 }
 
 
@@ -73,7 +73,7 @@ const footerInitialNavItems = [
 
 const footerInitialShareIcon = [
     {
-        url: "https://www.facebook.com/kinoverseteam",
+        url: "https://www.facebook.com/teamkinoverse",
         component: <Facebook color='error' sx={{ fontSize: { xs: 30, md: 50 }, marginRight: { xs: 2, md: 3 } }}  ></Facebook>
     },
     {

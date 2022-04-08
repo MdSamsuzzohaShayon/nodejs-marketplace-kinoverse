@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { check } = require('express-validator');
-const { login, registerStuff, getAllUsers, deleteUser, registerGeneral, registerPaymentIntent } = require('../controllers/user.controller.js');
+const { login, registerStuff, getAllUsers, deleteUser, registerGeneral, registerPaymentIntent, register } = require('../controllers/user.controller.js');
 const ensureAuth = require('../middleware/auth.js');
 
 
@@ -10,6 +10,10 @@ router.post('/register-stuff',
     check('email').isEmail(),
     check('password').notEmpty().isLength({ min: 6 }),
     registerStuff);
+
+
+// router.post('/register',
+//     register);
 
 
 

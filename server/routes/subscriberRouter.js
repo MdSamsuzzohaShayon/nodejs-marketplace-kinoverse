@@ -1,6 +1,7 @@
 const { addToWaitlist, getAllSubscribers, addSubscriber, getAllWaitlist, getAllPartner, addPartner } = require('../controllers/subscriber.controller.js');
 const { body, check } = require('express-validator');
-const { upload } = require('../config/s3-config');
+// const { upload } = require('../config/s3-config');
+const upload = require('../config/multer-config');
 const ensureAuth = require('../middleware/auth.js');
 
 

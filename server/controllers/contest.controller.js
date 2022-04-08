@@ -1,7 +1,9 @@
 const db = require('../models');
+const { unlink } = require('fs/promises');
+const path = require('path');
 // const User = require('../models/User');
 const { Contest, User } = db;
-const { s3 } = require('../config/s3-config');
+// const { s3 } = require('../config/s3-config');
 
 
 
@@ -10,23 +12,11 @@ const addScreenplay = async (req, res, next) => {
     try {
         const contestExist = await Contest.findOne({ where: { userId: req.userId } });
         if (contestExist) {
-            // DELETE PREVIOUS IMAGE 
-            const params = {
-                Bucket: process.env.AWS_BUCKET_NAME,
-                Key: contestExist.screenplay
-            };
-            // console.log(params);
-            s3.deleteObject(params, function (err, data) {
-                if (err) console.log("Error - ", err, err.stack); // an error occurred
-                else console.log("Data - ", data);           // successful response
-                /*
-                data = {
-                }
-                */
-            });
+
+            const deleteImageFromServer = await unlink(path.resolve(__dirname, "../uploads", contestExist.dataValues.screenplay));
 
             // UPDATE RECORD
-            const updateContest = await contestExist.update({ screenplay: req.file.key });
+            const updateContest = await contestExist.update({ screenplay: req.file.filename });
             // The database now has "Ada" for name, but still has the default "green" for favorite color
             const saveContest = await updateContest.save();
             // Now the database has "Ada" for name and "blue" for favorite color
@@ -38,7 +28,7 @@ const addScreenplay = async (req, res, next) => {
             // Everything went fine.
             // console.log("Req file - ", req.file);
             // console.log("Req files - ", req.files);
-            const contest = await Contest.create({ screenplay: req.file.key });
+            const contest = await Contest.create({ screenplay: req.file.filename });
 
             // // contest.setUser(user); // ADD THIS CONTEST.BELONGSTO
 

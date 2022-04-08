@@ -61,9 +61,7 @@ const Career = (props) => {
         formData.set([e.target.name], e.target.checked);
     }
 
-    const handleCheckboxInput = (e) => {
-        console.log(e.target.name);
-    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -79,11 +77,14 @@ const Career = (props) => {
             // UPLOAD RESUME 
 
             dispatch(openModal({ heading: "Upload resume", body: "You must upload youe resume!" }));
-        } else if (formData.get('animation') === 'false' && formData.get('screen') === 'false') {
+        }
+        /*
+         else if (formData.get('animation') === 'false' && formData.get('screen') === 'false') {
             // CHECK AT LEAST ONE 
-
             dispatch(openModal({ heading: "Animation & Screen", body: "Either any one of them should be selected." }));
-        } else {
+        } 
+        */
+        else {
             const config = {
                 method: 'POST',
                 url: `${BACKEND_URL}/subscriber/add-to-waitlist`,
@@ -99,11 +100,11 @@ const Career = (props) => {
                     } else if (response.status === 200 || response.status === 201) {
 
                         dispatch(openModal({ heading: "Thank You!", body: "Successfully attached to waitlist!" }));
-                    } else if (response.status = 208) {
+                    } else if (response.status === 208) {
 
                         dispatch(openModal({ heading: "Already waitlisted!", body: "Use another email " }));
                     }
-                    for (let [key, val] of formData.entries()) {
+                    for (let key of formData.entries()) {
                         // console.log(key, val);
                         formData.delete(key);
                     }
@@ -159,7 +160,9 @@ const Career = (props) => {
                         // onChange={fileUploadHandler}
                         onChange={e => fileUploadHandler(e, 1000 * 100 * 2, ['pdf'], dispatch, formData)}
                     />
-                    <Typography variant='h4' mt={5}>I'm interested in</Typography>
+                    
+                    {/* Temporary off  */}
+                    {/* <Typography variant='h4' mt={5}>I'm interested in</Typography>
                     <FormControl fullWidth={true} margin='dense' sx={{ flexDirection: { xs: 'column', md: "row" } }}>
                         <FormControlLabel
                             value="end"
@@ -173,7 +176,8 @@ const Career = (props) => {
                             label="3D animation"
                             labelPlacement="end"
                         />
-                    </FormControl>
+                    </FormControl> */}
+                    
 
                     <FormControl margin='dense' justify="center" align="center" fullWidth={true} >
                         <Box textAlign='center' my={5}>

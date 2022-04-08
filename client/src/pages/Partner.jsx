@@ -41,7 +41,7 @@ const Partner = (props) => {
                 } else if (response.status === 200 || response.status === 201) {
 
                     dispatch(openModal({ heading: "Thank You!", body: "You are added as partner!" }));
-                } else if (response.status = 208) {
+                } else if (response.status === 208) {
 
                     dispatch(openModal({ heading: "Already partner!", body: "Use another email " }));
                 }
@@ -56,7 +56,7 @@ const Partner = (props) => {
     return (
         <Box className="Partner" sx={{ minHeight: "100vh" }} >
             <Container maxWidth="xl" >
-                <Typography variant='h2' mb={3} pt={5} >Parter with Kinoverse</Typography>
+                <Typography variant='h2' mb={3} pt={5} >Partner with Kinoverse</Typography>
                 <Typography variant='h4' pb={5} >We are currently partnering with like minded businesses and films… if this is you, apply below</Typography>
 
                 <Box component='form' onSubmit={handleSubmit}>

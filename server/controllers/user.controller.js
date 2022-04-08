@@ -42,7 +42,7 @@ const login = async (req, res, next) => {
 
 
 
-/*
+
 const register = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -76,7 +76,6 @@ const register = async (req, res, next) => {
     }
 
 }
-*/
 
 
 
@@ -220,4 +219,4 @@ const getAllUsers = async (req, res, next) => {
 
 
 
-module.exports = { login, registerStuff, registerGeneral, getAllUsers, deleteUser, registerPaymentIntent };
+module.exports = { login, registerStuff, registerGeneral, getAllUsers, deleteUser, registerPaymentIntent, register };
