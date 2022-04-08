@@ -98,4 +98,9 @@
 - npm start
 - Upload file for **Add to waitlist**, **add screenplay[ensureAuth]**
 - Change some and update
--
+
+### Dogital ocean
+
+- [Tutorial](https://www.youtube.com/watch?v=akEfQt9oGmc&list=PLx-OQRQE9_maQssKO1zDd-VF7GAfRO2Rr&index=3)
+- [nginx server block](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04)
+- [nginx with let's encrypt](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
