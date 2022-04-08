@@ -9,7 +9,8 @@ import Career from './pages/Career';
 import Home from './pages/Home';
 import About from './pages/About';
 import Admin from './pages/Admin';
-import Contest from './pages/Contest';
+import Page404 from './pages/Page404';
+// import Contest from './pages/Contest';
 
 // COMPONENTS 
 import Navbar from './components/elements/Navbar';
@@ -61,7 +62,7 @@ function App() {
 
 
         {/* THIS PAGE IS TEMPORARYLY OFF (LOTS OF WORK LEFT IN THIS PAGE) */}
-        <Route path="/contest" element={<React.Fragment> <Navbar /> <Contest /> </React.Fragment>} />
+        {/* <Route path="/contest" element={<React.Fragment> <Navbar /> <Contest /> </React.Fragment>} /> */}
 
 
         <Route path="/privacy" element={<React.Fragment> <Navbar /> <Privacy /> </React.Fragment>} />
@@ -73,6 +74,9 @@ function App() {
             <Login />
           </NotLoggedIn>
         } />
+
+
+
         <Route
           path="/admin"
           element={
@@ -83,6 +87,14 @@ function App() {
             </RequireAuth>
           }
         />
+
+        <Route path="*" element={
+          <React.Fragment>
+            <Navbar />
+            <Page404 />
+          </React.Fragment>
+        } />
+
       </Routes>
 
       <Footer />

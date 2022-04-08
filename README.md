@@ -94,10 +94,7 @@
 
 - Create dot env dot prod
 - Register super suer
-- Refactor database
-- npm start
-- Upload file for **Add to waitlist**, **add screenplay[ensureAuth]**
-- Change some and update
+- Problem with admin
 
 ### Dogital ocean
 
