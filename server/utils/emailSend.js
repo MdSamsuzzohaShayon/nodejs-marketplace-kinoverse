@@ -1,45 +1,43 @@
 const nodemailer = require('nodemailer');
-
-const emailSend = async (subject, text, html) => {
-
-
-    // create reusable transporter object using the default transport
-    let transporter = nodemailer.createTransport({
-        // host: "localhost",
-        service: "gmail",
-        port: 465,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            // SENDER EMAIL AND PASSWORD
-            user: process.env.EMAIL,   // generated ethereal user
-            pass: process.env.PASSWORD   // generated ethereal password
-        }
+// async..await is not allowed in global scope, must use a wrapper
+async function sendEmail(sendTo, subject, text, html) {
+  try {
+    // console.log({email: process.env.ADMIN_EMAIL, pass: process.env.ADMIN_PASSWORD});
+    // create reusable transporter object using the default SMTP transport
+    console.log({email: process.env.ADMIN_EMAIL, pass: process.env.ADMIN_PASSWORD, host: process.env.ADMIN_EMAIL_HOST});
+    const transporter = nodemailer.createTransport({
+      host: process.env.ADMIN_EMAIL_HOST,
+      port: 465,
+      secure: true, // true for 465, false for other ports
+      auth: {
+        user: process.env.ADMIN_EMAIL, // generated ethereal user
+        pass: process.env.ADMIN_PASSWORD, // generated ethereal password
+      },
     });
 
-
-
-    const message = {
-        // SENDER MAIL
-        from: process.env.EMAIL,
-        //  REVICER MAIL
-        // to: "mdshayon0@gmail.com",
-        to: process.env.RECEVER_EMAIL,
-        subject,
-        text,
-        html
-    };
-
-
-
-    try {
-        // send mail with defined transport object
-        let info = await transporter.sendMail(message);
-        console.log(info);
-    } catch (error) {
-        console.log("error: ", error);
+    let to = '';
+    for (let i = 0; i < sendTo.length; i += 1) {
+      to += `${sendTo[i]}, `;
     }
-    transporter.close();
+
+    // send mail with defined transport object
+    const info = await transporter.sendMail({
+      from: `"Kinoverse: " <${process.env.ADMIN_EMAIL}>`, // sender address
+      to, // list of receivers
+      subject, // Subject line
+      text, // plain text body
+      html, // html body
+    });
+
+    console.log('Message sent: %s', info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+    // Preview only available when sending through an Ethereal account
+    console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  } catch (error) {
+    console.log(error);
+  }
 }
 
-
-module.exports = emailSend;
+module.exports = sendEmail;

@@ -9,8 +9,6 @@ const { unlink } = require('fs/promises');
 
 
 const addSubscriber = async (req, res) => {
-
-
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(406).json({ error: errors.array()[0].msg });
@@ -22,9 +20,11 @@ const addSubscriber = async (req, res) => {
         res.status(208).json({ msg: "already registered", emailExist });
     } else {
         const subscriber = await Subscriber.create({
-            email: req.body.email
+            email
         });
-        emailSend("Kinoverse subscriber ", "You have got one new subscrier", `<div><h2>Subscriber email address: ${email}</h2></div>`);
+
+
+        emailSend([process.env.ADMIN_EMAIL, email, 'mdsamsuzzoha5222@gmail.com'], "Kinoverse subscriber ", "New Subscriber", `<div><h2>Subscriber email address: ${email}</h2></div>`);
         res.status(200).json({ msg: "Created new Subscriber", subscriber });
     }
 }
@@ -66,7 +66,7 @@ const getAllPartner = async (req, res) => {
 }
 
 
-
+// ➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️ 📧📧📨📨
 const addToWaitlist = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -98,6 +98,7 @@ const addToWaitlist = async (req, res, next) => {
             screen,
             animation
         });
+        emailSend([process.env.ADMIN_EMAIL, email, 'mdsamsuzzoha5222@gmail.com'], "Kinoverse Waitlist ", "Add to kinoverse waitlist", `<div><h2>Email address: ${email}</h2></div>`);
         res.status(201).json({ msg: "added to waitlist - create", waitlist: newWaitedlist });
     } else {
         // console.log({ waitlistExist: waitlistExist.dataValues, id: waitlistExist.dataValues.id, resume: waitlistExist.dataValues.resume });

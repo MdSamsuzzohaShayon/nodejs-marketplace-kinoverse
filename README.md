@@ -101,3 +101,19 @@
 - [Tutorial](https://www.youtube.com/watch?v=akEfQt9oGmc&list=PLx-OQRQE9_maQssKO1zDd-VF7GAfRO2Rr&index=3)
 - [nginx server block](https://www.digitalocean.com/community/tutorials/how-to-set-up-nginx-server-blocks-virtual-hosts-on-ubuntu-16-04)
 - [nginx with let's encrypt](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-20-04)
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://www.godaddy.com/help/im-not-receiving-email-2863
+https://stackoverflow.com/questions/65514685/sending-email-but-not-receiving-godaddy-vps-server-and-cloudflare
+https://community.godaddy.com/s/question/0D53t00006Vm1FqCAJ/can-send-but-not-receive-email
